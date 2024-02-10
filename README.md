@@ -102,3 +102,26 @@ class Ders1 {
 }
 ```
 </details>
+
+<details>
+  <summary> 
+    <h3> Statament ve Expression </h3> 
+  </summary>
+ 
+### Expression 
+Bir değeri veya sonucu üreten bir ifadedir.
+Bir expression, bir değeri hesaplar ve genellikle bir değişkene atanabilir veya başka bir ifade içinde kullanılabilir.
+```kt
+val result = if (x > 0) "positive" else "non-positive"
+```
+### Statement
+Bir işlemi gerçekleştir ama işlem sonucunda sonucu herhangi bir değişkene atama işlemi yapılmaz.
+```kt
+if (x > 0) {
+    println("Positive number")
+} else {
+    println("Non-positive number")
+}
+```
+Bu statement, if (x > 0) şartını kontrol eder ve eğer doğruysa bir şeyi gerçekleştirir (burada println ile bir çıktı). Ancak, bu statement bir değer hesaplamaz, sadece bir eylemi gerçekleştirir.
+</details>
