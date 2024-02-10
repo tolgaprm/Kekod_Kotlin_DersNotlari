@@ -88,7 +88,7 @@ Debugging temellerini öğrenebileceğiniz https://www.youtube.com/watch?v=ln5hc
 
 <details>
   <summary> 
-    <h3> var ile tanımlanmış bir değişkeni, var keyword'unu kullanarak val değişken nasıl yapabilirsin?</h3> 
+    <h3> var ile tanımlanmış bir değişkeni, var keyword'unu kullanarak val değişken nasıl yapılabilir?</h3> 
   </summary>
 
    Örneğin bir `var isMale = true` değişkenimiz var. Her bir değişkenimizin arka planda
