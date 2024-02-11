@@ -11,7 +11,7 @@
 <details>
 <summary> <h3>Ders 1</h3></summary>
 
-### Kısayol Kaynakları
+### Intellij Idea Kısayollar
 
 - [(Ümit Köse) Youtube'da kısayolları anlattığı bir video](https://youtu.be/XOniJYHaiEY?si=jCoyOZ1-QuOAEdzm)
 - [key-promoter-x](https://plugins.jetbrains.com/plugin/9792-key-promoter-x) - IDE üzerinde plugin
@@ -26,12 +26,18 @@ atabilirsiniz.
 
 ### Type Inference (Tip Çıkarımı) Nedir ?
 
-Değişkenin tipini belirtmeden önce veya sonra tanımlayabiliriz. Örnek:
-
-```kt
-val name: String = "Tolga"
-val age = 23 // Type Inference
-```
+  Değişkenin değerini direkt olarak ilk değer atamasını yapmıyorsak daha sonra tanımlayacakasak,
+  bunun tipinin ne olacağını IDE'ye söylememiz gerekiyor.
+  
+  Bir değişkene değer atadığımızda o verinin hangi türde olacağını tam olarak belirtmediysek IDE'nin o verinin
+  hangi türde olacağını bilmesidir.
+  
+  ```kt
+  val name: String = "Tolga"
+  val age = 23 // Type Inference
+ // age değişkenini tanımlarken tam olarak (Explicitly) bir şekilde belirtmedik.
+ // IDE burada değişkenin tipini otomatik olarak kendisi tespit edecektir.
+  ```
 
 ### `val` ve `var` İle Oluşturulan Bir Değişkenin En Temel Farkı?
 
