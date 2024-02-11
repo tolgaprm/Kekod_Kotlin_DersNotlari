@@ -76,7 +76,7 @@ farkı yaratır.
 **Günlük hayat problemlerinde ise `val` kullanmak daha avantajlıdır.**
 Bu tercihin arkasındaki sebep, sektördeki uygulamalarda çok sayıda multi-thread işleminin gerçekleştirildiği durumlardır.
 
-### `var` ile tanımlanmış bir değişkeni, `var` keyword'unu kullanarak `var` değişken nasıl yapılabilir?
+### `var` ile tanımlanmış bir değişkeni, `var` keyword'unu kullanarak `val` değişken nasıl yapılabilir?
 
   Örneğin bir `var isMale = true` değişkenimiz var. Her bir değişkenimizin arka planda
   yazılan `get()` ve `set()` fonksiyonu vardır.(Bunu ilerideki derslerde daha detaylı göreceğiz property vs field farklarında)
