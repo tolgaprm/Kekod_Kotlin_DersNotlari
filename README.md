@@ -1,5 +1,5 @@
-# Kekod Ders Notları
-- Bu repoda Gökhan Öztürk tarafından youtube'da Kotlin ve Android dersleri sırasında aldığım notlar bulunmaktadır. [Youtube Linki](https://www.youtube.com/@KeKod)
+>>> # Kekod Ders Notları
+- Bu repoda Gökhan Öztürk tarafından Youtube'da Kotlin ve Android dersleri sırasında aldığım notlar bulunmaktadır. [Youtube Linki](https://www.youtube.com/@KeKod)
 - Notlarda özellikle iş görüşmelerinde çıkabilecek sorular ve cevaplar bulunacaktır.
 
 - Bu notlara eklemek istediğiniz herhangi ek bir bilgi olur veya yanlış olduğunu düşündüğünüz kısımlar var ise bunları pull-request
@@ -7,6 +7,11 @@
 
 - Eğer pull request nasıl atılır öğrenmek istiyorsanız. Yasin Maden arkadaşımızın hazırlamış olduğu [Medium yazısına](https://medium.com/@madenyasin/githubda-pull-request-nas%C4%B1l-olu%C5%9Fturulur-2de051dd9419)
   bakabilirsiniz.
+
+ ### [Challengelarda Dikkat Edilmesi Gerekenler - Tavsiyeler](otherReadme/Challenge_Dikkat_Edilmesi_Gerekenler.md)
+      
+> Bu kısımda ders sırasında Gökhan tarafından challenglarda dikkat etmemiz gereken tavsiyeler
+> bulunmaktadır.
 
 <details>
 <summary> <h3>Ders 1</h3></summary>
