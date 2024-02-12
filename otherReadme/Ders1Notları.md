@@ -29,27 +29,17 @@ hangi türde olacağını bilmesidir.
 
 ### `val` ve `var` İle Oluşturulan Bir Değişkenin En Temel Farkı?
 
--`val`: Değişken bir kere atandığında sabit kalır. `Value` sabit kelimesinin kısaltmasıdır.
-
--`var`: Değişken daha sonra değiştirilebilir. `Variable` değişken kelimesinin kısaltmasıdır.
-
-- #### `val` - `var` hangisi daha hızlıdır? Yani bir `val` değişken oluşturmak mı bize daha maliyetli yoksa `var` bir değişken oluşturmak mı daha maliyetli
-
-    ```kt
-         Bir var değişkenini val yapmak için private set kullanılabilir.
-    ```
-- #### Olan ufacık bir performans farkı nedir?
-
 - **`val` Değişkenleri:**
-    - Bir kere atandığında sabit kalır. (Değiştirilemez)
-    - Bu durum, değişkenin tipini ve değerini belirledikten sonra bir daha değiştirilemeyeceği anlamına gelir.
-
+  - Değişken bir kere atandığında sabit kalır. `Value` sabit kelimesinin kısaltmasıdır.
+  - Bu durum, değişkenin tipini ve değerini belirledikten sonra bir daha değiştirilemeyeceği anlamına gelir.
+  
 
 - **`var` Değişkenleri:**
-    - Daha sonra değiştirilebilir.
-    - Esneklik sağlar ve değer sonradan değiştirilebilir.
-    - Performans açısından `val` değişkenlerden biraz daha avantajlıdır.
+  - Değişken daha sonra değiştirilebilir. `Variable` değişken kelimesinin kısaltmasıdır.
+  - Esneklik sağlar ve değer sonradan değiştirilebilir.
+  - Performans açısından `val` değişkenlerden biraz daha avantajlıdır.
 
+- #### `val` - `var` hangisi daha hızlıdır? Yani bir `val` değişken oluşturmak mı bize daha maliyetli yoksa `var` bir değişken oluşturmak mı daha maliyetli?
 
 > `val` değişkenleri daha maliyetli kılan ana neden, değişkenin bir kere atandıktan
 sonra değiştirilemeyeceği şartını içermesidir.Bu şartın kontrol edilmesi, ek bir maliyet getirir.
