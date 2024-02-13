@@ -22,12 +22,22 @@ fun main() {
 * biz primitive type olan değişkenleri nasıl tanımlarız.
 * */
 
-// val değişkenler Immutable değildir, sadece readOnly dir. Dk 35 - 39 bak bir.
 
- /*
+/*
 * val userNameLiveData:LiveData
 *   get() = userNameMutableLiveData
 * private val userNameMutableLiveData: MutableLiveData
 *
 * Dk: 52
 * */
+
+// val değişkenler Immutable değildir, sadece readOnly dir. Dk 27 - 35 bak bir.
+class Box {
+    var width: Int = 20
+    var height: Int = 40
+    var length: Int = 50
+    var usedSpace: Int = 0
+
+    val avaliableSpace: Int
+        get() = (width * height * length) - usedSpace
+}
