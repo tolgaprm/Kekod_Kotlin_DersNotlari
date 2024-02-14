@@ -208,6 +208,82 @@ farklı sonuçlar elde edebilmiş olup, değiştirilmiş oldu. İşte tam da bu 
   artık reference değerli tip olarak işlem görecektir.
 
 ### 4 - Kotlin'de Numbers Değişkenler
- 
+
+  Kotlin sayıları temsil etmek amaçlı birden fazla tip sağlar. Bu tipler arasındaki farklar hafızada (memory)
+  kapladıkları alan ve sahip olabileceği max ve min değer aralıklarıdır.
+
   - ### Değişkenlerin değer aralıkları?
+
+| Type	 |Size (bits)|Min value |Max value |
+|--------|:---------:|:--------:|:--------:|
+| `Byte`	 |     8     |   -128   |   127    |
+| `Short`	 |    16     |  -32768  |  32767   |
+| `Int`	 |    32     |-2,147,483,648 (-2<sup>31</sup>)|2,147,483,647 (2<sup>31</sup> - 1) |
+| `Long`	 |    64     |-9,223,372,036,854,775,808 (-2<sup>63</sup>)|9,223,372,036,854,775,807 (2<sup>63</sup> - 1)|
+
+> **Hatırlatma!!** Challenglarda dikkat edilmesi gereken kısımlardan biriside bu tiplerin kullanımı
+> olduğu derste söylenmişti. Challenglarda dikkat edilmesi gereken bölüme ulaşmak için [Challenge_Dikkat_Edilmesi_Gerekenler](Challenge_Dikkat_Edilmesi_Gerekenler.md)
+> buradan ulaşabilirsiniz.
+ 
+Ondalıklı sayılar için;
+
+| Type	 |Size (bits)|Significant bits|Exponent bits|Decimal digits|
+|--------|:---------:|:--------------:|:-----------:|:------------:|
+| `Float`	 |    32     |       24       |      8      |      6-7      |
+| `Double` |    64     |       53       |     11      |     15-16     |    
+
+ Kotlin'de bazı değerleri belirtirken;
+ - `Long` - değişkenler için sayının sonuna `L` konularak değer ataması yapılabilir.
+ - `Float` - değişkenler için sayının sonuna `F`,`f` konularak değer ataması yapılabilir.
+
+  ```kt
+    val eFloat = 2.718f
+    val pi = 3.14f
+    val threeBillion = 3_000_000_000L // Number değişken tanımı yapılırken underscore "_" kullanılabilir.
+  ```
+ > ### Bir Genel Kültür Bilgisi :) <3
+ > Float kısmında `f` ve `F` varken, Long kısmında neden sadece `L` var ve küçük `l` kullanamıyoruz? 
+ > 
+> Bunun cevabı bazı fontlarda `l` `1(bir)`'e benzediği için kullanılmaz. :)
+
+- ### Unsigned Değişkenler Nedir?
+  -  Unsigned değişkenler, programlama dillerinde genellikle sayısal değerleri temsil etmek için kullanılan ve
+  **yalnızca pozitif değerleri ve sıfırı alabilen** özel bir veri türüdür. 
+
+  - Bu türler, değer aralığındaki **negatif değerlere** izin vermez.
+
+  | Type     | Size (bits) | Min value |                    Max value                    |
+  |----------|:-----------:|:---------:|:-----------------------------------------------:|
+  | `UByte`  |      8      |     0     |                       255                       |
+  | `UShort` |     16      |     0     |                     65,535                      |
+  | `UInt`   |     32      |     0     |       4,294,967,295 (2<sup>32</sup> - 1)        |
+  | `ULong`  |     64      |     0     | 18,446,744,073,709,551,615 (2<sup>64</sup> - 1) |
+
+- ### Boxed - UnBoxed ve Eşitlikler(`==` ve `===` Farkı Nedir?)
+  - **Boxed:** Değişkenin obje referansı olarak tutulmasıdır.
+  - **UnBoxed:** Değişkenin primitive olarak tutulmasıdır.
+- ### `==` ve `===` Operatörleri Arasındaki Fark Nedir?
+    > `==` operatörü değişkenlerin değerine(value) göre bir karşılaştırma yaparken;
+    > 
+    > `===` operatörü iki nesnenin aynı bellek konumunu referans edip etmediğini kontrol eder.
   
+- ### Reference Değer Karşılaştırmasında Byte Aralığının Oluşturduğu Spesifik Durum
+  
+  ```kt
+    val number: Int = 127 // Byte aralığı içerisinde
+    val boxedNumber: Int? = number
+    val anotherBoxedNumber: Int? = number
+    println(boxedNumber === anotherBoxedNumber) // true
+
+    val number2: Int = 129 // Byte aralığı içerisinde değil.
+    val boxedNumber2: Int? = number2
+    val anotherBoxedNumber2: Int? = number2
+    println(boxedNumber2 === anotherBoxedNumber2) // false
+  ```
+
+  Yukarıdaki Kotlin koduna baktığımızda iki işlemde reference karşılaştırması yapıyor. Ama birisinde
+  `false` değeri dönerken, diğer işlemde `true` değeri dönüyor. Bunun tam olarak sebebi JVM dillerinde 
+  `byte` aralığında olan tam sayılar için özel bir optimizasyondan dolayıdır.
+  
+  > Kotlin'de -128 ile 127 arasındaki `byte` tam sayıları için **aynı bellek konumunu paylaşan bir özel optimizasyon vardır** 
+  > ve bu nedenle bu aralıktaki tamsayılar için değer karşılaştırması yapılır.
