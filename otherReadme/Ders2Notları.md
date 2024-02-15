@@ -287,3 +287,34 @@ Ondalıklı sayılar için;
   
   > Kotlin'de -128 ile 127 arasındaki `byte` tam sayıları için **aynı bellek konumunu paylaşan bir özel optimizasyon vardır** 
   > ve bu nedenle bu aralıktaki tamsayılar için değer karşılaştırması yapılır.
+
+### 5 -Type Conversion
+
+Type Conversion bir veri tipinin başka bir veri tipine dönüştürülmesi anlamına gelir.
+Kotlin'de implicit type conversion yoktur. (Explicit) Açık bir şekilde hangi türe dönüştürülmesi gerektiğini belirtmeliyiz. 
+
+`toByte(): Byte`
+
+`toShort(): Short`
+
+`toInt(): Int`
+
+`toLong(): Long`
+
+`toFloat(): Float`
+
+`toDouble(): Double`
+
+ - Değer aralığı küçük olan tipler, büyük olan tiplere sorunsuz bir şekilde dönüştürülebilir.
+    ```kt
+    val schoolNumber: Short = 1809
+    val convertedNumber = schoolNumber.toInt()
+    println(convertedNumber) // Çıktı: 1809
+    ```
+- Ama **büyük değer aralığına** sahip olan bir değişkeni, **küçük değer aralığına** sahip olan bir değişken tipine dönüştürme işlemi yaptığınızda, anlamsız bir sonuç alabilirsiniz.
+- Örneğin, 1809 sayısını `Int` değişkeninden `Byte` değişkenine dönüştürmeye çalıştığınızda, `byte` değişkenin değer aralığı `-128 ile +127` arasında olduğundan, 1809 değeri bu aralığın dışında kalacak ve sonuç beklenmedik bir şekilde sınırlı bir değerle temsil edilecektir. **Bu durum, veri kaybına ve programın doğru çalışmamasına neden olabilir.**
+    ```kt
+    val schoolNumber = 1809
+    val convertedValue = schoolNumber.toByte()
+    println(convertedValue) // Çıktı: 17
+    ```
