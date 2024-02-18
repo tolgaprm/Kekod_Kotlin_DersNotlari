@@ -86,3 +86,50 @@ RAM üzerinde `STACK` ve `HEAP` olarak adlandırılan iki bölüm bulunur.
         Yukarıdaki örnek gibi eğer her toplama işleminde bu değerlerin `Int` max değerini geçtiğini kontrol yapılsa idi 
         gereksiz bir maliyet oluşturacaktı.
 
+### 4. Characters (`Char`)
+
+- ### Char Bir Değişken Tanımlama
+    
+    - 2 byte(16bits) alan yer kaplar.
+    - Tek tırnakların '' arasına harf, sayi, escape karakterlerini veya unicode yazarak kullanırız.
+    - Çift tırnak "" kullanırsak `String` olur.
+    
+    ```kt
+      val firstCharOfName = 'T'
+      val firstCharOfName2 = "T" // String
+      val firstCharOfName3 = 'TO'
+    ```
+    Yukarıdaki `firstCharOfName3` gibi tek tırnaklar içerisine birden fazla character ekleyemeyiz.
+    
+- ### ASCII Tablosu
+    - ASCII tablosu, ASCII karakterlerini ve karşılık gelen sayısal değerleri içeren bir tablodur. 
+    - ASCII tablosu, temel Latin alfabesi karakterlerini, rakamları, noktalama işaretlerini ve diğer özel karakterleri içerir.
+
+    <details>
+     <summary>ASCII TABLOSU</summary>
+     
+  ![](screenshots/ascii_table.png)
+    </details>
+  
+    Eğer bir karakter ifadeyi `toInt()` veya `code` ile `Int` bir değere döndürmeye
+    çalıştığımızda bize geri dönecek olan değer tabloda  bu karaktere denk gelen `decimal` karşılığını verecektir.
+
+    ```kt
+    println('H'.code) // 72
+    println('P'.code) // 80
+    println('7'.code) // 55
+    ```
+    - Burada `toInt()` de kullanabilirdik ama bu fonksiyon `Deprecated` bir duruma geçmiş bunun yerine `code` property 
+    kullanmamız isteniyor.
+    
+    - Eğer karakter içerisindeki sayısal değer ile işlem yapmak istiyorum bunun ASCII tablosundaki decimal karşılığını
+    istemiyorum diyorsak, `digitToInt()` fonksiyonunu kullanabiliriz.
+    ```kt
+     println('7'.digitToInt()) // 7 - Bu sefer decimal karşılığını vermedi.
+    ```
+    - Burada dikkat etmemiz gereken bir durum var. Eğer char içerisinde Int'e dönüşü yapılamayacak bir değer var ise 
+    program `IllegalArgumentException` hatasını verecektir.
+    ```kt
+  println('T'.digitToInt())
+    ```
+      
