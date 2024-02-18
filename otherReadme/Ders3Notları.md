@@ -70,14 +70,14 @@ RAM üzerinde `STACK` ve `HEAP` olarak adlandırılan iki bölüm bulunur.
     `Short` ve `Byte` değerlerlerini topladığımızda ise tip `Int` olarak belirlenir. Burada yine dilin bu değerler için sağlamış
     olduğu özel optimizasyonlar sebebi ile `Int` olarak atanır.
 
-    ### Peki neden `Int.MAX_VALUE + Int.MAX_VALUE` toplamını yaptığımızda tip `Long` olarak belirlenir?
+    #### Peki neden `Int.MAX_VALUE + Int.MAX_VALUE` toplamını yaptığımızda tip `Long` olarak belirlenir?
     
     Burada IDE her bir toplama işlemi yapıldığında hangi değer aralığına geleceğini kontrol etmiyor. Bunu yapamaz mı?
     İsterse tabiki yapar sadece bir if kontrolü gerekiyor. Ama biz her toplama işlemi yaptığımızda arka planda bu işlem 
     kontrolü sağlanacak ve bu da ek bir maliyet getirir.
     Buradan `Defansif Programlama` kavramına bir geçiş yapalım.
 
-    - ### Defansif Programlama Nedir?
+    - #### Defansif Programlama Nedir?
     
         Yazılımcıların yazdıkları kodda olası tüm durumları (edge case) ele alması durumudur.
         Burada gerçekten bütün edge case durumlarını değerlendirmelimiyiz. Bu en uç noktadaki edge case
