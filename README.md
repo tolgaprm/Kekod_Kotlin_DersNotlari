@@ -86,6 +86,8 @@
     - Char Bir Değişken Tanımlama
     - ASCII Tablosu
     - Escape(Kaçış) Karakterleri
+    - Unicode
+    - Unicode ve ASCII Arasındaki Fark Nedir?
 
 
 5. Boolean

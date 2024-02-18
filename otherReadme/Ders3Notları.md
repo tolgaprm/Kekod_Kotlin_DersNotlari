@@ -132,4 +132,30 @@ RAM üzerinde `STACK` ve `HEAP` olarak adlandırılan iki bölüm bulunur.
     ```kt
   println('T'.digitToInt())
     ```
-      
+
+- ### Escape (Kaçış) Karakterleri
+    
+  - `\t`: Tab kadar bir boşluk bırakır.
+  - `\b`:
+  - `\n`: Yeni bir satıra geçmemizi sağlar.
+  - `\r`: Satır başına dönmek için kullanılır.
+  - `\'`: Tek tırnak karakterini kullanmak için. Örneğin bir String ifade içerisinde 
+   ```"Bu bir tek tırnak içeren bir string\'dir."``` Bunu print ile çıktısını almaya çalıştığımızda sonuç 
+  `Bu bir tek tırnak içeren bir string'dir.`
+  - `\"`: Çift tırnak karakterini kullanmak için 
+  - `\$`: Dollar ($) işaretini kullanmak için 
+
+- ### Unicode
+    Unicode, bilgisayar sistemlerinde metin ve sembollerin temsil edilmesi için kullanılan bir karakter kodlama standardıdır.
+    Farklı dil ve alfabeleri destekler. (Örneğin Çince veya Japonca alfabelerini) - UTF-8, UTF-16, ve UTF-32 gibi çeşitleri vardır.
+    Bu çeşitler arasındaki fark, destekledikleri toplam sembol, karakter sayısı ve kapladıkları alan bakımından kaynaklıdır.
+    
+    Unicode'da her bir sembolün özel bir kodu bulunur ve biz bu kodları kullanarak programlarımıza entegre edebiliriz.
+    
+    Kalp elde etmek için
+    ```kt 
+    print(`\u2665`) 
+    ```
+- ### Unicode ve ASCII Arasındaki Fark Nedir?
+  - **ASCII**: Temel olarak İngilizce alfabesini ve birkaç temel sembolü içerir. Farklı dil ve kültürlerdeki özel karakterlere destek vermez.
+  - **Unicode**: Dünya genelinde birçok dil ve kültürü destekler, bu da metin ve sembollerin daha geniş bir yelpazesini temsil etmesine olanak tanır.
