@@ -159,3 +159,60 @@ RAM üzerinde `STACK` ve `HEAP` olarak adlandırılan iki bölüm bulunur.
 - ### Unicode ve ASCII Arasındaki Fark Nedir?
   - **ASCII**: Temel olarak İngilizce alfabesini ve birkaç temel sembolü içerir. Farklı dil ve kültürlerdeki özel karakterlere destek vermez.
   - **Unicode**: Dünya genelinde birçok dil ve kültürü destekler, bu da metin ve sembollerin daha geniş bir yelpazesini temsil etmesine olanak tanır.
+
+### 5. Boolean
+- ### Boolean Bir Değişken Tanımlama
+  - 2 byte yani 8 bit alan kaplar.
+  - `true` yada `false` ataması için kullanılır. Aynı zamanda `null` değerde alabilir.
+  - Bazı programlama dillerinde `0` veya `1` de boolean olarak kabul edilebilir ama Kotlin'de kabul edilmez.
+
+
+- ### Karşılaştırma Operatörleri (`&& - || - !`)
+  - `&& - and` - Eğer karşılaştırılan iki değer de `true` ise sonuç `true` olur. Eğer ifadelerden herhangi birisi `false` ise
+  `false` cevabını elde ederiz.
+     ```kt
+     val isAndroidDeveloper = true
+     val isKeko:Boolean = false
+   
+    if(isAndroidDeveloper && isKeko){}
+   
+    if (isAndroidDeveloper and isKeko){} // Infix Fonksiyon İle Kullanımı
+   
+    if (isAndroidDeveloper.and(isKeko)){} // Extension Fonksiyon İle Kullanımı
+     ```
+  - `|| - or` - Eğer karşılaştırılan iki değerden en az birisi `true` ise sonuç `true` olur. Bu karşılaştırmada `false` 
+olması için iki değerinde `false` olması gerekiyor.
+    ```kt
+    val isAndroidDeveloper = true
+    val isKeko:Boolean = false
+
+    if(isAndroidDeveloper || isKeko){}
+
+    if (isAndroidDeveloper or isKeko){} // Infix Fonksiyon İle Kullanımı
+
+    if (isAndroidDeveloper.or(isKeko)){} // Extension Fonksiyon İle Kullanımı
+     ```
+  - `! - not` - Bu operatör ile değerimiz `true` ise `false`, `false` ise `true` yapar.
+    ```kt
+      val isAndroidDeveloper = true
+      println(!isAndroidDeveloper) // Sonuç: false
+      println(isAndroidDeveloper.not()) // Sonuç: false // Extension Fonksiyon İle Kullanımı
+    ```
+    > Boolean değerlerin `true` olma durumunu kontrol etmek için `== true` şeklinde açıkca belirtmeye gerek yoktur. Ama 
+     `Nullable` olan değerler için açık bir şekilde kontrol işlemi gerçekleştirmeliyiz.
+    > ```kt
+    > if (isAndroidDeveloper) {}
+    > ```
+    > Değişkenimiz `null` olduğunda artık 3 durumumuz var.
+     Bunlar `true`, `false` ve `null` olması
+    > 
+    > ```kt
+    >  val isSuccess: Boolean? = null
+    > if (isSuccess == true) {
+    > 
+    > } else {
+    >   // Geri kalan iki durum için else durumunu kullanır.
+    >  }
+    > ```
+    
+- ### Bu Operatörlerin Lazily Çalışma Mantığına Sahip Olması
