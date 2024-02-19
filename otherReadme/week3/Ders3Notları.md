@@ -289,3 +289,38 @@ olması için iki değerinde `false` olması gerekiyor.
     val name = "Tolga"
     println("$name.length: ${name.length}") // Tolga.length: 5
   ```
+- ### String `format()` Fonksiyonu
+  - Bu method, belirli bir `String` içinde yer tutucuları(placeholder) belirtilen değerlerle değiştirerek yeni bir `String` oluşturmamıza olanak tanır.
+  > Kotlin'deki `format()` fonksiyonu arka planda Javadaki format fonksiyonunu kullanır.
+  > 
+  > ![](../../screenshots/week3/string_format.png)
+
+  **Placeholders**:
+  -  `%s` : String
+  -  `%d` Integer için
+  - ` %f `Float/Double
+  -  `%n` Yeni bir satıra geçmek için
+    
+    ```kt
+        val boy = 1.854
+        val boyMessage = String.format("Boyum: %.2f metre", boy)
+         println(boyMesaj) 
+    ```
+    >  Burada 1.85 döndürür. Sondaki 4'ü almaz Çünkü biz 2 ondalık basamak kısmını al dedik.
+     2f 2 ondalık basamakla olduğunu belirtir. Noktadan sonra ne kadar ifade alacağını belirtmiş olduk.
+    ```kt
+        val sayi = 1234567.8954768
+        val usFormat = String.format(Locale.US, "US formatında: %,.2f", sayi)
+        // //Türkçe için Locale nesnesi, "tr" ISO 639 dil kodu ve "TR" ISO 3166 Ülke kodu ile oluşturulabilir
+        val localeTR = Locale("tr", "TR") // Türkçe için Locale nesnesi oluşturuluyor.
+        val trFormat = String.format(localeTR, "TR formatında: %,.2f", sayi)
+  
+        print(usFormat) // US formatında: 1,234,567.89" yazdırır.
+        print(trFormat) // TR formatında: 1.234.567,90" yazdırır.
+    ```
+   > Peki burada ki `,.2f` kısmındaki ilk virgül neyi temsil ediyor.
+   > Yukarıdaki sayı değeri ingilizce de normalde `1,234,567.8954768` bu şekilde olduğu için yani yüzdelik kısımları
+  ayırmak için `,` , ondalık kısımları ayırmak için `.` kullanılıyor. Buradaki ilk `,` ifadesi sayıdaki `,` kısımlarını
+  temsil etmiş oluyor. (Programlama İngilizce diline göre geliştirildiği için öyle kabul edilmiş) Yani biz bu fonksiyonda diyoruz ki ben bu formatta o kısımlara `,` koyacağım ama bunu
+  **Türkçeye göre yap**.
+  

@@ -19,7 +19,7 @@ fun main() {
     val firstCharOfAwesomeKekod = awesomeKeKod[awesomeKeKod.indices.first]
     val firstCharOfAwesomeKekod2 = awesomeKeKod[1] // e
     val lastCharOfAwesomeKekod = awesomeKeKod[awesomeKeKod.indices.last]
-    val lastCharOfAwesomeKekod2 = awesomeKeKod[16] // 16 değil 16 dersek index out of range exception hatasını verir.
+    val lastCharOfAwesomeKekod2 = awesomeKeKod[15] // 16 değil 16 dersek index out of range exception hatasını verir.
 
 
     /**
@@ -117,7 +117,8 @@ fun main() {
     println(usFormat) // "US formatında: 1,234,567.89" yazdırır.
     //Türkçe için Locale nesnesi, "tr" ISO 639 dil kodu ve "TR" ISO 3166 Ülke kodu ile oluşturulabilir
     val localeTR = Locale("tr", "TR") // Türkçe için Locale nesnesi oluşturuluyor
-    val usFormatTR = String.format(localeTR, "TR formatında: %,.3f", sayi)
+    val trFormat = String.format(localeTR, "TR formatında: %,.2f", sayi)
+    println(trFormat)
     // 2f çünkü, .'dan sonra 2 karakter goster diyoruz, bunu ,2f ile yapamayiz
     // Yani yukarıdaki sayı değeri ingilizce de normalde 1,234,567.8954768 bu şekilde olduğu için yani yüzdelik kısımları
     // ayırmak için , ondalık kısımları ayırmak için . kullanılıyor. Buradki ilk , ifadesi sayıdaki , kısımlarını
