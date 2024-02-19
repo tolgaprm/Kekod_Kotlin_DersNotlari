@@ -274,4 +274,18 @@ olması için iki değerinde `false` olması gerekiyor.
   > 
   > ![](../../screenshots/week3/int_plus_operator.png)
   > `Int` değişkenin `plus()` operatör fonksiyonu `Byte,Short,Int,Float,Double` kabul ediyor.
-  >  
+
+- ### String Template Kullanımı - `Length:${name.length}`
+  Kotlin'de herhangi bir değişken `+` operatörüne ihtiyaç duyulmadan direkt olarak `""`(çift tırnak) arasına yazılarak 
+  kullanılabilir.
+- Bunun için `$` işaretine ihtiyacımız vardır. Bu yapıya **String Template** denir.
+  ```kt
+    val age = 23
+    println("Age: $age") // Age: 23
+  ```
+- Eğer değişkenin herhangi bir özelliğine erişmek istiyorsanız `${}` ile kullanılır.
+
+  ```kt
+    val name = "Tolga"
+    println("$name.length: ${name.length}") // Tolga.length: 5
+  ```

@@ -101,5 +101,4 @@
     - Stringler Immutable'dır
     - Stringler'de `+` Operatörü - Birleştirme İşlemleri
     - String Template Kullanımı - `Length:${name.length}`
-    - Row String (Multiline String)
     - String `format()` Fonksiyonu
