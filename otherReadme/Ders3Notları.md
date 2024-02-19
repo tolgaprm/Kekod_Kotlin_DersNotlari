@@ -216,3 +216,9 @@ olması için iki değerinde `false` olması gerekiyor.
     > ```
     
 - ### Bu Operatörlerin Lazily Çalışma Mantığına Sahip Olması
+    `&&` ve `||` operatörleri Lazily çalışma mantığına sahiptir. Bu mantığa sahip olması demek;
+    
+  - Eğer `||`  ile iki değeri kontrol ettiğimizde ilk değer `true` ise, ikinci değer hiçbir şekilde kontrol edilmez. Ama
+    ilk değer `false` ise, diğer ifadenin de kontrol işlemi gerçekleştirilir.
+  - Eğer `&&`  ile iki değeri kontrol ettiğimizde ilk değer `true` ise, ikinci değer de kontrol edilir. Ama ilk değer `false`
+    ise ikinci ifadenin kontrol işlemi gerçekleştirilmez.

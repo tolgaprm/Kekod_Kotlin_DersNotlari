@@ -12,6 +12,7 @@ fun main() {
      */
 
     val isKeko = false
+
     val isAndroidDeveloper = true
 
     /**
