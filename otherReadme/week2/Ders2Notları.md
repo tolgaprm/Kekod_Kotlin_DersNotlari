@@ -121,7 +121,7 @@ farklı sonuçlar elde edebilmiş olup, değiştirilmiş oldu. İşte tam da bu 
 
 `const val` bir değişkene `get` eklemeye çalıştığımızda IDE'nin hata verdiğini göreceğiz.
 
-![](screenshots/const_val_val_farkı.png)
+![](../../screenshots/week2/const_val_val_farkı.png)
 > Çünkü BEST_COMMUNITY hiçbir şekilde değişmeyecektir :) < 3
 
 ### 3 - Kotlin'de Nullable(?) İfadeler
@@ -197,7 +197,7 @@ farklı sonuçlar elde edebilmiş olup, değiştirilmiş oldu. İşte tam da bu 
   ```
   Gelin şimdi de bir oluşturulan Java kodumuza bakalım.
 
-    ![](screenshots/nullables_decompiled.png)
+    ![](../../screenshots/week2/nullables_decompiled.png)
     > Üsteki Java koduna baktığımızda `studentAge` değişkenin `Integer`,
      `isMale` değişkeninin `Boolean` olarak yazıldığına dikkat edelim. Daha önce Java yazmadıysa
     tam olarak ne söylemek istediğimi anlamamış olabilirsiniz. Java'da primitive değişkenlerin tiplerinin yazımı
@@ -222,7 +222,7 @@ farklı sonuçlar elde edebilmiş olup, değiştirilmiş oldu. İşte tam da bu 
 | `Long`	 |    64     |-9,223,372,036,854,775,808 (-2<sup>63</sup>)|9,223,372,036,854,775,807 (2<sup>63</sup> - 1)|
 
 > **Hatırlatma!!** Challenglarda dikkat edilmesi gereken kısımlardan biriside bu tiplerin kullanımı
-> olduğu derste söylenmişti. Challenglarda dikkat edilmesi gereken bölüme ulaşmak için [Challenge_Dikkat_Edilmesi_Gerekenler](Challenge_Dikkat_Edilmesi_Gerekenler.md)
+> olduğu derste söylenmişti. Challenglarda dikkat edilmesi gereken bölüme ulaşmak için [Challenge_Dikkat_Edilmesi_Gerekenler](../challenge/Challenge_Dikkat_Edilmesi_Gerekenler.md)
 > buradan ulaşabilirsiniz.
  
 Ondalıklı sayılar için;

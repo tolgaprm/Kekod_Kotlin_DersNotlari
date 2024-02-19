@@ -57,7 +57,7 @@ karşı tarafa bildiğini gösterecek ve bu gibi ince detayları araştıran bir
   bir
   yöntemi kullanmaya devam etmelisin.
 
-  ![](screenshots/deprecated.png)
+  ![](../../screenshots/challenge/deprecated.png)
 
   Bir işlemin `deprecated` olduğunu kullandığımız işlemin üzeri çizili bir şekilde gösterilir. Ve bunun üstüne gelip 
   yazan açıklamaya baktığımızda bunun yerine hangi fonksiyonu kullanmamız gerektiği de belirtilir.

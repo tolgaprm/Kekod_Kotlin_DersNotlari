@@ -11,14 +11,14 @@
   olduğu [Medium yazısına](https://medium.com/@madenyasin/githubda-pull-request-nas%C4%B1l-olu%C5%9Fturulur-2de051dd9419)
   bakabilirsiniz.
 
-### [Challengelarda Dikkat Edilmesi Gerekenler - Tavsiyeler](otherReadme/Challenge_Dikkat_Edilmesi_Gerekenler.md)
+### [Challengelarda Dikkat Edilmesi Gerekenler - Tavsiyeler](otherReadme/challenge/Challenge_Dikkat_Edilmesi_Gerekenler.md)
 
 > Bu kısımda ders sırasında Gökhan Öztürk tarafından challenglarda dikkat etmemiz gerektiğini söylediği
 > tavsiyeleri bulunmaktadır.
 
 ## Ders 1
 
-> [Ders 1 Notlarına buradan ulaşabilirsiniz.](otherReadme/Ders1Notları.md)
+> [Ders 1 Notlarına buradan ulaşabilirsiniz.](otherReadme/week1/Ders1Notları.md)
 
 ### İçindekiler
 
@@ -31,7 +31,7 @@
 
 ## Ders 2
 
-> [Ders 2 Notlarına buradan ulaşabilirsiniz.](otherReadme/Ders2Notları.md)
+> [Ders 2 Notlarına buradan ulaşabilirsiniz.](otherReadme/week2/Ders2Notları.md)
 
 ### İçindekiler
 
@@ -67,7 +67,7 @@
 
 ## Ders 3
 
-> [Ders 3 Notlarına buradan ulaşabilirsiniz.](otherReadme/Ders3Notları.md)
+> [Ders 3 Notlarına buradan ulaşabilirsiniz.](otherReadme/week3/Ders3Notları.md)
 
 ### İçindekiler
 
