@@ -11,7 +11,7 @@ RAM üzerinde `STACK` ve `HEAP` olarak adlandırılan iki bölüm bulunur.
 - bu değerlerin adreslerini gösteren değişkenler ise `STACK` bölümünde tutulur.
 
 
-  ![](screenshots/stack_heap.jpg)
+  ![](screenshots/week3/stack_heap.jpg)
   
 ### 2. Smart Cast Nedir?
   - `is` ve `!is` Operatörleri
@@ -108,7 +108,7 @@ RAM üzerinde `STACK` ve `HEAP` olarak adlandırılan iki bölüm bulunur.
     <details>
      <summary>ASCII TABLOSU</summary>
      
-  ![](screenshots/ascii_table.png)
+  ![](screenshots/week3/ascii_table.png)
     </details>
   
     Eğer bir karakter ifadeyi `toInt()` veya `code` ile `Int` bir değere döndürmeye
@@ -261,3 +261,17 @@ olması için iki değerinde `false` olması gerekiyor.
     val nameUppercase = name.uppercase() 
     println(nameUppercase) // TOLGA
   ```
+- ### Stringler'de `+` Operatörü - Birleştirme İşlemleri
+  - Farklı tipteki bir değişkenin önüne `String` bir değişken yada ifade koyarak toplarsak(+) operatörü ile, sonuç `String` olacaktır. 
+  - Ancak bir `String` değişken yada ifadenin sonuna + operatörü ile farklı tipte bir değişken eklersek kod çalışmaz ve bize hata verecektir.
+  ```kt
+    val numbersValue = "value" + (4+5+6) // value15
+    val numbersValue2 = (4+5+6) + "" // Hata verecektir. 
+  ```
+  > ![](screenshots/week3/string_plus_operator.png)
+  > Burada bu işlemin çalışmamasının arkasındaki sebep `String` değişkenlerin `plus` operatör fonksiyonuna
+  > baktığımızda `Any` tipine sahip değişkenleri kabul ederken
+  > 
+  > ![](screenshots/week3/int_plus_operator.png)
+  > `Int` değişkenin `plus()` operatör fonksiyonu `Byte,Short,Int,Float,Double` kabul ediyor.
+  >  
