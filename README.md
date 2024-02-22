@@ -16,9 +16,9 @@
 > Bu kısımda ders sırasında Gökhan Öztürk tarafından challenglarda dikkat etmemiz gerektiğini söylediği
 > tavsiyeleri bulunmaktadır.
 
-## Ders 1
+## 1. Hafta Notları
 
-> [Ders 1 Notlarına buradan ulaşabilirsiniz.](otherReadme/week1/Ders1Notları.md)
+> [1.Haftanın Notlarına buradan ulaşabilirsiniz.](otherReadme/week1/1_Hafta_Notları)
 
 ### İçindekiler
 
@@ -29,9 +29,9 @@
     - Bir `val` değişken oluşturmak mı bize daha maliyetli yoksa `var` bir değişken oluşturmak mı daha maliyetli?
 5. `var` ile tanımlanmış bir değişkeni, `var` keyword'unu kullanarak `val` değişken nasıl yapılabilir?
 
-## Ders 2
+## 2. Hafta Notları
 
-> [Ders 2 Notlarına buradan ulaşabilirsiniz.](otherReadme/week2/Ders2Notları.md)
+> [2.Haftanın Notlarına buradan ulaşabilirsiniz.](otherReadme/week2/2_Hafta_Notları)
 
 ### İçindekiler
 
@@ -65,9 +65,9 @@
 
 5. Type Conversion
 
-## Ders 3
+## 3. Hafta Notları
 
-> [Ders 3 Notlarına buradan ulaşabilirsiniz.](otherReadme/week3/Ders3Notları.md)
+> [3.Haftanın Notlarına buradan ulaşabilirsiniz.](otherReadme/week3/3_Hafta_Notları)
 
 ### İçindekiler
 
