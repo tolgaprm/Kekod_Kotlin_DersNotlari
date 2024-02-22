@@ -405,7 +405,6 @@ olması için iki değerinde `false` olması gerekiyor.
     ```
     booleanPrimitiveArray: false, false, false
     bytePrimitiveArray: 0, 0, 0
-    charPrimitiveArray:  ,  ,  
     doublePrimitiveArray: 0.0, 0.0, 0.0
     floatPrimitiveArray: 0.0, 0.0, 0.0
     intPrimitiveArray: 0, 0, 0
