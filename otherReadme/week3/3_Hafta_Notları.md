@@ -323,4 +323,234 @@ olması için iki değerinde `false` olması gerekiyor.
   ayırmak için `,` , ondalık kısımları ayırmak için `.` kullanılıyor. Buradaki ilk `,` ifadesi sayıdaki `,` kısımlarını
   temsil etmiş oluyor. (Programlama İngilizce diline göre geliştirildiği için öyle kabul edilmiş) Yani biz bu fonksiyonda diyoruz ki ben bu formatta o kısımlara `,` koyacağım ama bunu
   **Türkçeye göre yap**.
+
+### 7. Arrays
+- ### Array Tanımlama
+    Array'ler aynı türden veya interface yapısı `<>` içerisinde belirttiğimiz türün alt türlerinden **sabit sayıda** 
+    değer tutan bir veri yapısıdır.
+
+  - ### Object Type & Primitive Type Array 
+    > Kotlin'de array oluşturmak istediğimizde iki tane seçenek önümüze çıkar. Bunlardan birisi `Object Type Array` bir 
+     diğeri ise `Primitive Type Array`'dir. Bunların arasındaki temel fark yine bellekte nasıl saklandıkları ile ilgilidir.
+     Ve `Primitive Type` olan türler her zaman `Object Type` olan türlere göre daha performanslı, daha hızlı ve daha az
+     yer kapladığı için bunları tercih etmeliyiz.
   
+    - #### Object Type Array Oluşturma
+    
+      Object Type Array oluşturmak için bize sunulan birçok yöntem bulunuyor. Bunlar;
+
+        - `arrayOf()`: Hepsi aynı tipte olan veya bir `Any`(_Bu şu anda Any ama biz ileride class yapılarını gördüğümüzde kendi
+       oluşturmuş olduğumuz classlarıda verebileceğiz._) ile belirtilmiş alt türleri de kabul eden array oluşturmak için kullanılır.
+        ```kt
+        val studentNumbers = arrayOf(13, 14, 15, 16) // Int Array
+        val studentNames = arrayOf("Ömer", "Arda", "Doğaç") // String Array
+        val studentHeight = arrayOf(185.3, 184.3, 180.0) // Double Array
+        val differentTypeArray = arrayOf<Any>("Tolga", true, 23, 2.0)
+        ```
+      
+        - `arrayOfNulls<Type>(size)`: Verilen `size` bilgisi kadar `null` değer bulunduran array oluşturmak için kullanılır.
+        ```kt
+        val arrayOfNulls = arrayOfNulls<String>(5)
+        println("arrayOfNulls: ${arrayOfNulls.joinToString()}") 
+        // Çıktı: arrayOfNulls: null, null, null, null, null
+        ```
+      
+        > **joinToString() Fonksiyonu:** 
+        Array içerisindeki elemanları aldığı bir seperator ile ayırarak `String` ifade döner.
+        `Seperator` varsayılan olarak `virgül(,)` karakteridir.
+      
+        - `emptyArray<Type>()`: Bu fonksiyon ile boş bir array oluştururuz
+        ```kt
+        val emptyArray = emptyArray<Int>()
+        println("emptyArray: ${emptyArray.joinToString()}")
+        // Çıktı: emptyArray:  Boş olduğu için harhangi bir şey gösterilmiyor.
+        ```
+        > `emptyArray[3] = 60` diyerek bir eleman eklemeye çalıştığımızda `ArrayIndexOutOfBoundsException` hatasını alırız.
+         Çünkü bu arrayin kaç değere sahip olacağını belirtmedik. Bu dizi aslında boş bir dizi olduğu için, bellekte bir dizi elemanı için yer ayrılmaz.
+         Yani, bu durumda, sadece boş bir dizi referansı oluşturulmuş olur ve herhangi bir eleman içermez.
+        - Constructor Yapısı ile `Array(size)`
+        ```kt
+            val studentNotes = Array(5){
+             // Bazı işlemler yapılabilir
+            it + 40
+            } 
+            println(studentNotes.joinToString()) // 40,41,42,43,44
+        ```
+        > Bu örnekte, Array(5) ifadesi 5 elemanlı bir array oluşturur. Süslü parantezler(higherOrder) içindeki
+        kod bloğu her bir index değeri ile (it) ile 40 ekleyerek bir array oluşturur.
+
+  - #### Primitive Type Array Oluşturma
+    - Constructor Yapısı İle Oluşturma
+    ```kt
+    val booleanPrimitiveArray = BooleanArray(3)
+    val bytePrimitiveArray = ByteArray(3)
+    val charPrimitiveArray = CharArray(3)
+    val doublePrimitiveArray = DoubleArray(3)
+    val floatPrimitiveArray = FloatArray(3)
+    val intPrimitiveArray = IntArray(3)
+    val longPrimitiveArray = LongArray(3)
+    val shortPrimitiveArray = ShortArray(3)
+    
+    println("booleanPrimitiveArray: ${booleanPrimitiveArray.joinToString()}")
+    println("bytePrimitiveArray: ${bytePrimitiveArray.joinToString()}")
+    println("charPrimitiveArray: ${charPrimitiveArray.joinToString()}")
+    println("doublePrimitiveArray: ${doublePrimitiveArray.joinToString()}")
+    println("floatPrimitiveArray: ${floatPrimitiveArray.joinToString()}")
+    println("intPrimitiveArray: ${intPrimitiveArray.joinToString()}")
+    println("longPrimitiveArray: ${longPrimitiveArray.joinToString()}")
+    println("shortPrimitiveArray: ${shortPrimitiveArray.joinToString()}")
+    ```
+    Bu şekilde oluşturduğumuzda oluşturulan array'ler default değerler ile oluşturuluyor.
+    Yukarıdaki yazdırdığımız işlemlerin çıktıları aşağıdaki gibi olacaktır.
+    ```
+    booleanPrimitiveArray: false, false, false
+    bytePrimitiveArray: 0, 0, 0
+    charPrimitiveArray:  ,  ,  
+    doublePrimitiveArray: 0.0, 0.0, 0.0
+    floatPrimitiveArray: 0.0, 0.0, 0.0
+    intPrimitiveArray: 0, 0, 0
+    longPrimitiveArray: 0, 0, 0
+    shortPrimitiveArray: 0, 0, 0
+    ```
+    
+    - Fonksiyonlar İle Oluşturma
+    ```kt
+    val booleanPrimitiveArray2 = booleanArrayOf(true, false, true, true)
+    val bytePrimitiveArray2 = byteArrayOf()
+    val charPrimitiveArray2 = charArrayOf('A', 'B', 'C')
+    val doublePrimitiveArray2 = doubleArrayOf()
+    val floatPrimitiveArray2 = floatArrayOf()
+    val intPrimitiveArray2 = intArrayOf(3, 4, 67)
+    val longPrimitiveArray2 = longArrayOf()
+    val shortPrimitiveArray2 = shortArrayOf()
+    ```
+    Bize sunulan hazır fonksiyonlar ilede bir array oluşturabiliriz. Fonksiyon içerisinde herhangi bir
+    değer vermezsek bize bpş bir array oluşturur. Ama bizim istediğimiz değerler ile bir array oluşturulmasını
+    istiyorsak o değerleri de fonksiyon parametresine argüman olarak verilebilir.
+
+  - ### Object Type Array ve Primitive Type Array’ler Arasında Dönüşüm İşlemleri
+  
+    `Primitive type` olan bir array'i `Object Type` olan array'e dönüştürmek için `toTypedArray()` fonksiyonu kullanılır.
+    ```kt
+    val convertPrimitiveToObjectType = booleanPrimitiveArray.toTypedArray()
+    // Artık bu array'imiz Array<Boolean> olacaktır.
+    ```
+    
+    `Object Type` olan bir array'i `Primitive Type` olan bir array'e dönüştürmek için aşağıda belirtilen fonksiyonları
+    kullanabiliriz:
+    ```
+    `toBooleanArray()`: Boolean primitive bir array'e dönüştürmek için kullanılır.
+    `toByteArray()`: Byte primitive bir array'e dönüştürmek için kullanılır.
+    `toCharArray()`: Char primitive bir array'e dönüştürmek için kullanılır.
+    `toDoubleArray()`: Double primitive bir array'e dönüştürmek için kullanılır.
+    `toFloatArray()`: Float primitive bir array'e dönüştürmek için kullanılır.
+    `toIntArray()`: Int primitive bir array'e dönüştürmek için kullanılır.
+    `toLongArray()`: Long primitive bir array'e dönüştürmek için kullanılır.
+    `toShortArray()`: Short primitive bir array'e dönüştürmek için kullanılır.
+    ```
+
+  - ### Çok Boyutlu Diziler Oluşturma (Multi Dimensional Array)
+    ```kt
+    val twoDArray = Array(2) { Array(2) { 0 } }
+    println("TwoD Array: ${twoDArray.contentDeepToString()}")  // [[0,0], [0,0]]
+   
+    val threeDArray = Array(2) { Array(2) { Array(2) { 0 } } }
+    println("ThreeD Array: ${threeDArray.contentDeepToString()}")
+    // [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]
+    ```
+    > `contentDeepToString()` fonksiyonu çok boyutlu olan bir diziyi // [[0,0], [0,0]] şekilde ekrana yazdıran bir fonksiyondur.
+
+- ### Array Karşılaştırmaları - `contentEquals` & `contenDeepEquals`
+  Array'lerde `==` operatörü referans kontrolü yapıyor. Yani iki değişken de aynı referansına sahip olduğu kontrolü yapılıyor.
+  
+  Ama biz arraylerin içerisindeki değerlerin aynı olup olmadığı karşılaştırmasını yapmak istersek
+  `contentEquals` yada `contentDeepEquals` kullanmalıyız.
+  
+  >Bu iki yöntem de: Karşılaştırılan iki array arasında **hem aynı değerlere sahip olup olmadığını** hemde
+  **aynı sırada bulunup bulunmadığını** karşılaştırırç
+
+  ```kt
+   val simpleArray = arrayOf(1, 2, 3)
+   val anotherArray = arrayOf(1, 2, 3)
+   println("== İle Yapılan Karşılaştırma: ${simpleArray == anotherArray}") // false
+   println("contentEquals() İle Yapılan Karşılaştırma: ${simpleArray.contentEquals(anotherArray)}") // true
+    
+  println(simpleArray contentEquals anotherArray) // İnfix olarak kullanımı
+  ```
+- ### Array'lerde Ekleme, Çıkarma İşlemleri Yapmak
+  Array'lerin sabit bir büyüklüğü olduğundan bahsetmiştik. Array'lere ekleme, çıkarma işlemleri yaptığımızda Stringler'de
+  olduğu gibi bellekte yeni bir array oluşturulur ve bizim değişkenimiz yeni oluşturulan array'in reference adresini tutar.
+  Diğer array ise GarbageCollector ile belli bir zaman sonra yok edilecektir.
+  
+  ```kt
+   var cities = arrayOf("Kayseri", "İstanbul", "İzmir")
+
+   println("Cities Before Add Sivas: ${cities.joinToString()}")
+   cities += "Sivas" // Adding Sivas
+   println("Cities After Add Sivas: ${cities.joinToString()}")
+   // Veya bu şekilde yani bir array eklemesi de yapılabilir.
+   cities += arrayOf("Nevşehir", "Bursa")
+   println("Cities After Add New Cities Array: ${cities.joinToString()}")
+  
+  // Çıktılar:
+  // Cities Before Add Sivas: Kayseri, İstanbul, İzmir
+  // Cities After Add Sivas: Kayseri, İstanbul, İzmir, Sivas
+  // Cities After Add New Cities Array: Kayseri, İstanbul, İzmir, Sivas, Nevşehir, Bursa
+  ```
+  > `val` ile tanımlanmış bir arrayin herhangi bir index'deki değerini [] index operatörü ile değiştirebiliriz.
+  `val` indexdeki değerlerin değişmesine karışmaz.
+  Ancak bir array'i `val` ile tanımlanmış bir değişkene atamasını yapamayız. 
+  ```kt
+    val array3 = arrayOf(1, 2, 3, 4)
+    println("Before Modify array3: ${array3.joinToString()}")
+    array3[2] = 10 // Array'deki 2. indesde bulunan değeri 10 ile değiştirdim.
+    println("After Modify array3 ${array3.joinToString()}")
+  
+   // Çıktılar
+   // Before Modify array3: 1, 2, 3, 4
+   // After Modify array3: 1, 2, 10, 4
+  ```
+  - ### Array'ler Invariant'dır
+    Array'Ler invariantdır. Yani arrayler üst class'ları yerine atanamazlar.
+    ```kt
+    val arrayOfString = arrayOf("")
+    var arrayOfAny: Array<Any> = arrayOfString
+    // Burada bize bir type mismatch hatasını verecektir.
+    ```
+  - ### `vararg` ve `Spread(*)` Operatörü ile İlişkisi
+    `vararg` keyword'ü ile fonksiyonlarımızda istediğimiz sayıda parametre kabul edilebilir.
+    Eğer `vararg`a denk gelecek şekilde bir array kullanmak istiyorsak `spread *` operatörünü kullanabiliriz.
+    > `vararg` konusunu ileride fonksiyonlarda daha detaylı bir şekilde göreceğiz.
+    ```kt
+    fun printAllStrings(vararg strings: String) {
+        for (string in strings) {
+            print(string)
+        }
+    }
+
+    val lettersArray = arrayOf("c", "d")
+    printAllStrings("a", "b", *lettersArray)
+    ```
+  - ### Array'lerde Bulunan Bazı Yardımcı Fonksiyonlar
+    Array'lerde Collections yapılarında kullandığımız birçok yardımcı fonksiyonu da kullanabiliyoruz.
+    Bunlardan bazıları `filter, first, last, find, shuffle` ve çok daha fazlası.
+    > Bütün fonksiyonlara bakmak isterseniz:
+     https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/
+    ```kt
+    val students = arrayOf("Tolga", "Gökhan", "Ömer", "Arda", "Barış", "Ayşe")
+
+    val studentWithStartingA = students.filter { it.first() == 'A' }
+
+    println("Student Starting name with A  $studentWithStartingA")
+
+    val numbers = arrayOf(1, 2, 3, 4, 5)
+
+    numbers.shuffle()
+
+    println("Shuffled Numbers: ${numbers.joinToString()}")
+
+    // Çıktılar
+    // Student Starting name with A:  [Arda, Ayşe]
+    // Shuffled Numbers: 2, 3, 1, 5, 4 // Bu çıktı her seferinde farklı sonuçlar alabilir.
+    ```
+  - ###  Array'leri Collections Yapılarına Dönüştürme İşlemleri - `Set`, `List`, `Map`
