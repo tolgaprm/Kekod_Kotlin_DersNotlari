@@ -73,7 +73,7 @@
 
 ## 3. Hafta Notları
 
-> [3.Haftanın Notlarına buradan ulaşabilirsiniz.](otherReadme/week3/3_Hafta_Notları)
+> [3.Haftanın Notlarına buradan ulaşabilirsiniz.](otherReadme/week3/3_Hafta_Notları.md)
 
 ### İçindekiler
 
