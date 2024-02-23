@@ -20,7 +20,7 @@
 
 ## 1. Hafta Notları
 
-> [1.Haftanın Notlarına buradan ulaşabilirsiniz.](otherReadme/week1/1_Hafta_Notları)
+> [1.Haftanın Notlarına buradan ulaşabilirsiniz.](otherReadme/week1/1_Hafta_Notları.md)
 
 ### İçindekiler
 
@@ -35,7 +35,7 @@
 
 ## 2. Hafta Notları
 
-> [2.Haftanın Notlarına buradan ulaşabilirsiniz.](otherReadme/week2/2_Hafta_Notları)
+> [2.Haftanın Notlarına buradan ulaşabilirsiniz.](otherReadme/week2/2_Hafta_Notları.md)
 
 ### İçindekiler
 
