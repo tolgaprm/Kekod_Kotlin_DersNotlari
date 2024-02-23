@@ -594,4 +594,67 @@ olması için iki değerinde `false` olması gerekiyor.
     Bu bilgilerle birlikte primitive array yapıları da oluşturabildiğimiz için performans artırabilirler. Ama veri setimiz 
     dinamik bir şekilde değişiyorsa o zaman Collections yapılarını kullanmak daha mantıklı bir seçenek olacaktır.
   - Ancak, veri setinizin boyutunun değişebileceği durumlarda veya dinamik veri manipülasyonları gerekiyorsa, `Collections` yapıları gibi dinamik boyutlu veri yapıları daha uygun olabilir.
-   
+
+
+### 8. Range - Progression
+  Sonlu sayıda liste oluşturmak için kullanılır.
+
+  - ### Küçükten Büyüğe Range Tanımlama
+    Küçükten büyüğe bir range oluşturmak için kullanılan birkaç yöntem vardır:
+    - `..` operatörü yada `rangeTo` fonksiyonu - Bu şekilde oluşturduğumuz range'de belirttiğimiz her iki elemanda dahil olur.
+    - `..<` operatörü yada `rangeUntil()` fonksiyonu : Bu şekilde oluşturduğumuz range'de belirttiğimiz ilk eleman dahil son eleman dahil olmaz.
+    - `until()` fonksiyonu ile oluşturabiliriz.
+      ```kt
+      val numbers = 1..100 // [1,100]
+      val numbers2 = 1.rangeTo(100)
+
+      val numbersUntil = 1..<100 //[1,100)
+      val numbersUntil2 = 1.rangeUntil(100) /// 1,2,3,4,...,99
+      
+      val gradeNumbers = 30.until(90)
+      val gradeNumbers2 = 30 until 90 // 30,31,32 .... 89
+      ```
+      `step` fonksiyonu kullanarak liste olustururken belli sayıda atlamalar yapabiliriz.
+      ```kt
+      val numbers = 1..100 step 2 
+      val numbers2 = 1.rangeTo(100) step 2 // 1,3,5,7.....99
+
+      val numbersUntil = 1..<100 step 3
+      val numbersUntil2 = 1.rangeUntil(100) step 3 // 1,4,7,10,13 .... 97
+      
+      val gradeNumbers = 30.until(90) step 5
+      val gradeNumbers2 = 30 until 90 step 5 // 30,35,40,45 .... 85
+      ```
+      > `Char`'lardan oluşan bir liste de tanımlayabiliriz. Türkçe karakterler içermez.
+      > ```kt
+      > val alphabet = 'A'..'Z'
+      > alphabet.forEach { print("$it ") }
+      > // A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+      > ```
+      
+
+  - ### Büyükten Küçüğe Range Tanımlama
+    - Büyükten küçüğe bir range oluşturmak için `downTo()` fonksiyonu kullanılır.
+      ```kt
+      val reversedNumbers = 100.downTo(1)
+      val reversedNumbers2 = 100 downTo 1 // 100,99,98 ... 1
+    
+      val reversedNumbersStep2 = 100 downTo 1 step 2 // 100, 98, 96 ... 2
+      ``` 
+      
+    - `CharRange`,`IntRange` ve `LongRange` isimlerinde özel rangeler vardır.Progression olarak adlandırılırlar
+    - Bu durumda `first`,`last`,`step`,`count` gibi ek özelliklerine ulaşabiliriz.
+    - `Iterable<N>` interfacesini implement etmişlerdir .O sebeple `map`, `filter` gibi fonksiyonları kullanabiliriz.
+      ```kt
+      val numbers:IntProgression = 1..100 step 2 // 1,3,5,7 ... 99
+      println("NumberRange First:${numbers.first}") 
+      println("NumberRange Last:${numbers.last}") 
+      println("NumberRange Step:${numbers.step}")
+      println("NumberRange Count:${numbers.count()}")
+      
+      /* Çıktı:
+      NumberRange First:1
+      NumberRange Last:99
+      NumberRange Step:2
+      NumberRange Count:50 */
+      ```
