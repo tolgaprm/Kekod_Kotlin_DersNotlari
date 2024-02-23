@@ -552,4 +552,46 @@ olması için iki değerinde `false` olması gerekiyor.
     // Student Starting name with A:  [Arda, Ayşe]
     // Shuffled Numbers: 2, 3, 1, 5, 4 // Bu çıktı her seferinde farklı sonuçlar alabilir.
     ```
-  - ###  Array'leri Collections Yapılarına Dönüştürme İşlemleri - `Set`, `List`, `Map`
+  - ### Array'leri Collections Yapılarına Dönüştürme İşlemleri - `Set`, `List`, `Map`
+    Kullandığımız array yapılarını `set`, `list` ve `map` veri yapılarına dönüştürebiliriz.
+
+    > `Set` yapısı içerisinde değer olarak, benzersiz elemanları içeren bir yapıdır. O yüzden array'i set'e çevirdiğimizde
+     ve print ettiğimzde sadece a,b,c göreceğiz ikinci c'i göremeyiz.
+    >```kt
+    >val simpleArray = arrayOf("a", "b", "c", "c")
+    >println("Converted to Set: ${simpleArray.toSet()}")
+    >println("Converted to MutableSet: ${simpleArray.toMutableSet()}")
+    >// a, b, c
+    > ```
+  
+    > `toList` fonksiyonunu kullanarak Liste yapısına çevirebiliriz. Aynı şekilde eğer bu liste yapımızda ekleme çıkarma işlemleri
+     yapmamızda gerekiyorsa o zaman `toMutableList()` fonksiyonu ile mutable bir list oluşturabiliriz.
+    >```kt
+    >val simpleArray = arrayOf("a", "b", "c", "c")
+    >println("Converted to List: ${simpleArray.toList()}")
+    >println("Converted to MutableList: ${simpleArray.toMutableList()}")
+    >```
+    
+    > Array'leri Map veri yapısına dönüştürmek için `toMap()` fonksiyonunu kullanabiliriz.
+     Yalnız arrayleri `Map`'e çevirebilmemiz için array içerisindeki değerler `Pair<K,V>` formunda olması gerekiyor. 
+     Pair çiftleri bir değeri `key-value` formatında saklamak için kullanılır.
+     `Pair` oluşturmak için `Pair("Tolga", 23)` veya `to` infix notasyonu ile de oluşturabiliriz.
+     `"Tolga" to 23"` 
+    > ```kt
+    >  val pairArray = arrayOf("Tolga" to 23, "Ahmet" to 25, "Sena" to 20)
+    >  println("Converted to Map: ${pairArray.toMap()}")
+    > // Converted to Map: {Tolga=23, Ahmet=25, Sena=20}
+    > ```
+  
+    ### Map ile Pair Arasındaki Fark Nedir?
+    * `Pair` sadece iki eleman içerir. İçerisinde `key - value` şeklinde bir değer tutar.
+    * `Map` ise içerisinde birden fazla `Pair` çiftlerini içerir.
+    * Kısacası, Pair tek bir `key-value` çiftini temsil ederken, Map birçok `key-value` çiftini içeren bir koleksiyonu temsil eder.
+
+
+- ### Ne Zaman Array’leri Kullanmalıyız? Ne Zaman Collections Yapılarını Kullanmalıyız?
+  - Eğer veri setinizin boyutu önceden belirlenmiş ve bu boyut ekleme veya çıkarma işlemleriyle değişmeyecekse, `array`'ler uygun bir seçenek olabilir.
+    Bu bilgilerle birlikte primitive array yapıları da oluşturabildiğimiz için performans artırabilirler. Ama veri setimiz 
+    dinamik bir şekilde değişiyorsa o zaman Collections yapılarını kullanmak daha mantıklı bir seçenek olacaktır.
+  - Ancak, veri setinizin boyutunun değişebileceği durumlarda veya dinamik veri manipülasyonları gerekiyorsa, `Collections` yapıları gibi dinamik boyutlu veri yapıları daha uygun olabilir.
+   

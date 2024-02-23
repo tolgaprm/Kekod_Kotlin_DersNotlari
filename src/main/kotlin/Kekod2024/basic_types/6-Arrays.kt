@@ -288,7 +288,7 @@ fun main() {
 
 
     /**
-     *  Arrayleri Map'e  dönüştürmek içim .map() fonksiyonunu kullanabilirz.
+     *  Arrayleri Map'e  dönüştürmek içim .toMap() fonksiyonunu kullanabilirz.
      *  Ama array değerleri Pair<K,V> formunda olması gerekiyor.
      *
      *  Pair çiftleri dediğimiz bir değeri key-value formatında saklamak için kullanılır.
@@ -308,7 +308,6 @@ fun main() {
     Pair("Tolga", 23)
     val pairArray = arrayOf("Tolga" to 23, "Ahmet" to 25, "Sena" to 20)
 
-    val convertedMap = pairArray.toMap()
-
+    println("Converted to Map: ${pairArray.toMap()}")
 
 }
