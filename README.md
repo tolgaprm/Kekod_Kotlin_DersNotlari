@@ -134,3 +134,16 @@
    - `step` İle Kullanımı
 
 
+## 4. Hafta Notları
+
+> [4.Haftanın Notlarına buradan ulaşabilirsiniz.](otherReadme/week4/4_hafta_notlari.md)
+
+### İçindekiler
+
+- Operatorler
+  - Operatörler ve Kullanımları 
+  - `compareTo()` Fonksiyonu
+  - Ne Zaman Operatör Fonksiyonları (Örneğin: plus()) Kullanmalıyız, Ne Zaman Doğrudan Operatörleri (Örneğin: +) Kullanmalıyız?
+
+
+- Operator Overloading
