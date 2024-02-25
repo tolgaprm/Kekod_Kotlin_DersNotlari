@@ -1,0 +1,210 @@
+------------------------------------------------------------------------------------------------------------------------
+Soru 1: Kaç farklı tipte "number" sınıfı miras alan "alt sınıf" (child class) vardır? Bunların değer aralıkları neden önemlidir?
+
+  - Number sınıfını miras alan (Byte, Short, Int, Long, Float, Double) olmak üzere 5 adet child sınıfı vardır.
+ 
+  - Bu değişkenlerin bellekte kapladığı yer ve alabilecekleri max ve min değerler açısından farklılıkları vardır. Bu
+  değişkenlerin değer aralıkları bellek kullanımını daha iyi bir şekilde yönetmek için farkdında olmamız gerekiyor.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 2: Eğer bir değişkene tip belirtimi yapılmaz ve bir değer atanırsa, Kotlin tip çıkarımını nasıl yapar?
+
+    Kotlin'de tip çıkarımında açk bir şekilde tip belirtmezsek, eşitliğin karşı tarafındaki değere göre compiler bunu
+    atomatik olarak tespit eder.
+
+    - Burada number değişkenlerde eğer eşitliğin karşı tarafındaki değer Int tipinin max değerini geçmiyorsa, değişkenin
+    tipi Int olarak belirlenir.
+
+    - Eğer eşitliğin karşı tarafındaki değer Int tipinin max değerini aşarsa, değişken Long olarak belirlenir.
+
+    - Bu kısımda, örneğin ben bir değişken tanımlamak istiyorum ve bu değişkenin ilk değeri Int değerleri arasında ama
+    ben bu değişkenin Long olarak kullanılmasını ve aynı zamanda Long ifadesini açık bir şekilde belirtmek istemediğimi
+    düşünelim. Bu durumda nasıl tanımlama yapabilirim?
+
+        Bu durumda değerin sonuna `L` harfini ekleyerek derleyiciye(compiler) bu değişkenin Long olacağını söylemiş oluruz.
+
+        val balance = 5000L // 5000 normalde Int değer aralığının içerisinde ama ben bu değişkenin Long olmasını istedim.
+
+
+    Ondalıklı sayılarda ise;
+    Eğer değişkenin float olması için `f` veya `F` olarak belirtilmezse değere, default olarak Double olarak belirlenir.
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 3: Float değişken oluştururken F ve f harfleri varken, Long değişken oluştururken neden küçük l harfi yoktur?
+
+    Bunun sebebi bazı fontlarda küçük 'l' harfinin 1(bir)e benzediğinden dolayı kullanılmaz.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 4: Tek duyarlıklı (Single precision) ve Çift duyarlıklı (Double precision) kavramlarını açıklayın.
+
+    Ondalıklı sayıların gösterimi için IEEE tarafından önerilen formatlardır.
+
+    1 - Single Precision:
+
+    |----------------|-----------------|----------|
+    | 1 bit Sign Bit | 8 Bits Exponent | 23 bits  |
+    |----------------|-----------------|----------|
+
+     Bir ondalıklı sayıyı temsil etmek için 32 bit kullanır.
+     İşaret için 1 bit (pozitif veya negatif olma durumu), üssel terim için 8 bit ve önemli kısmın (mantissa olarak da bilinir)
+      yani virgülden sonraki kısım  23 bit olduğu bir yapıya sahiptir.
+      Virgülden sonra 6 - 7 basamak hassasiyeti sağlar.
+
+      Hassasiyetin az olduğu durumlarda kullanılır. Daha az yer kaplar ve hesaplama olarak daha ucuzdur.
+
+
+     2 - Double Precision:
+
+      |----------------|------------------|----------|
+      | 1 bit Sign Bit | 11 Bits Exponent | 52 bits  |
+      |----------------|------------------|----------|
+
+      Çift hassasiyetli de ondalıklı sayıları temsil etmek için 64 bit kullanır.
+      İşaret için 1 bit, üssel terim için 11 bit ve virgülden sonraki kısmın 52 bit olduğu bir yapıya sahiptir.
+      Virgülden sonra 15 - 16 basamak hassasiyeti sağlar.
+
+      Hassasiyetin daha önemli olduğu durumlarda kullanılır. Daha doğru sonuçlar verir ama daha fazla yer kaplar.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 5: Double ve Float değişkenlerle çalışırken ondalık ayıracı olarak hangi işaretler kullanılır?
+    Bu ayıraçların kullanımında nelere dikkat etmek gerekir?
+
+    Programlama dillerinin (.) işareti kullanılır. Ama bazı durumlarda özeliklle bir veri tabanı kullandığımızda,
+    kullandığımız veri tabanı dilinde defalut olarak nokta (.) değilde virgül (,) kullanımı olduğunda bazı hatalara
+    sebep olabilir. Bunlara dikkat etmek gerekir.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 6: Double ve Float değişkenler ondalık kısımda kaç basamağa kadar işlem yaparlar?
+    Bu sınırın üzerinde gelen ondalık bilgileri için nasıl davranırlar?
+
+    Float değişkenler ondalık kısımda 6 - 7 basamağa kadar işlem yapabilirken
+    Double değişkenler 15 - 16 basamağa kadar işlem yapabilirler.
+
+    Eğer bir değişkeni açık olarak Float belirttik ve ondalık sayı kısmında 6-7 basamaktan fazla girdi eklediğimizde,
+    değer yuvarlanır.
+
+   val eFloat = 2.7182818284f // Float, actual value is 2.7182817
+
+
+   Hangi durumlar için Float ve hangi durumlar için Double kullanılmalıdır?
+
+   İşlem hassasiyeti önemli olan işlemlerde Double, çok fazla işlem hassasiyeti gerektirmeyen işlemlerde ise Float
+   kullanılır. (Alabilecekleri max - min değerler hesaba katıldıktan sonra)
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 7: Ondalık(Decimal), Onaltılık (Hexadecimal) ve İkilik (Binary) değişkenleri Kotlin'de nasıl tanımlayabilirsiniz?
+
+ val decimal = 110
+ val hexadecimal = 0x0F
+ val binaries = 0b1111100
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 8: Sekizlik (Octal) değişkenler Java'da nasıl tanımlanır? Kotlin'de Sekizlik değişken tanımlanabilir mi?
+
+    Java'da, sekizlik (octal) sayılar genellikle bir "0" öne eklenerek ifade edilir. Örneğin:
+    int octalNumber = 0123;  // Bu, ondalık olarak 83'e karşılık gelir
+
+    Ancak, Kotlin dilinde octal değişkenler tanımlayamayız.
+    Kotlin, sayıları varsayılan olarak ondalık sistemde kabul eder.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 9: "Geleneksel Notasyon" (Conventional Notation) gösterimi nasıl yapılır?
+
+    Bir matematiksel ifadeyi geleneksel notasyon kullanarak göstermek,
+    kullanılan matematiksel sembollerin ve kuralların genel kabul görmüş standartlara uygun olmasını içerir.
+
+    123.5e10 -- Bu, bilimsel gösterimde 123,5 sayısının 10'un kuvveti olan 10 ile çarpımını temsil eder.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 10: Sayısal değişkenlerde alt çizgi (underscore) nasıl kullanılır? Kotlin bunu nasıl yorumlar?
+
+    Sayı değişkenlerin daha okunabilir bir şekilde yazabilmek için kullanılır.
+
+    val oneMillion = 1_000_000 // Böyle yazılmış bir değişkeni print ettiğimizde 1000000 olarak yazdırır. _ olarak
+    belirttiğimiz alt çüzgileri yazdırmaz.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 11 : == ile neyi karşılaştırırız? === ile neyi karşılaştırırız?
+
+ == operatörü ile iki değişkenin değerlerinin aynı olup olmadığı kontrol edilir.
+ === operatörü ile ise iki değişkenin aynı referans adresini gösterip göstermediği kontrol edilir.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 12: === operatörü ile karşılaştırma yaparken Byte değer aralığı neden önemlidir?
+Kotlin bu aralığa göre neden özel bir davranış sergiler?
+
+    val a: Int = 100
+    val boxedA: Int? = a
+    val anotherBoxedA: Int? = a
+    println(boxedA === anotherBoxedA)
+    // a 100 değerini aldığında true ama a 129 değerini aldığında false dönecek.
+
+    Bunu anlamak için iki adet nullable değişkenlerin karşılaştırması üzerinden gidelim. Biliyorsunuz ki bir değişken
+    nullable olduğunda onun değeri artık reference değer tipli oluyordu. Bir önceki sorudaki bilgimize göre bu iki değişken
+    karşılaştırması yapıldığında false dönmesini bekleriz. Çünkü bir değişken oluşturduğumda bunun bellekte bir nesnesi
+    oluşturulur ve benim değişkenim bu nesnenin refernsını tutar.
+
+   Kotlin'de -128 ile 127 arasındaki byte tam sayıları için aynı bellek konumunu paylaşan bir özel optimizasyon vardır
+   ve bu nedenle bu aralıktaki tamsayılar için değer karşılaştırması yapılır. Yani bu değerler arasında olan değişkenlerin
+   hepsi bellekte STACK kısmında tutulur.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 13: Sayısal değişkenlerde hangi matematiksel operatörler kullanılabilir?
+
+ - Toplama (+),Çıkarma (-),Çarpma (*),Bölme (/),Modül (%),Artırma (++) ,Azaltma (--)
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 14: Sayısal değişkenlerde hangi karşılaştırma operatörleri kullanılabilir?
+
+   Eşittir (==) :
+   Eşit Değildir (!=) :
+   Büyük (>) :
+   Küçük (<):
+   Büyük Eşit (>=):
+   Küçük Eşit (<=):
+   (x in a..b): x bunların arasında mı
+   (x !in a..b): x bunların arasında değil mi
+   karşılaştırma operatörleri kullanılabilir.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 15: Bit düzeyinde operatörler (Bitwise operators) nelerdir? Ne amaçla kullanılır? Kotlin'de bunları nasıl
+kullanabilirsiniz?
+
+Bit düzeyinde operatörler (bitwise operators), bilgisayar belleğindeki verilerin individual bitlerini manipüle etmek için kullanılan operatörlerdir.
+
+-Ve (AND) Operatörü (&): İki bitin her ikisi de 1 ise sonuç 1'dir. val result = a and b
+-Veya (OR) Operatörü (|): İki bitin herhangi biri 1 ise sonuç 1'dir. val result = a or b
+-XOR (Exclusive OR) Operatörü (^): İki bit birbirinden farklı ise sonuç 1'dir. val result = a xor b
+-(NOT) Operatörü (~): Bitleri ters çevirir; 1'leri 0 yapar, 0'ları 1 yapar.  val result = a.inv()
+-Sağa Kaydırma (Right Shift) Operatörü (>>): Belirtilen sayıda biti sağa doğru kaydırır.  val result = a shr 1
+-Sola Kaydırma (Left Shift) Operatörü (<<): Belirtilen sayıda biti sola doğru kaydırır.  val result = a shl 1
+
+------------------------------------------------------------------------------------------------------------------------
+
+16.Kotlin'de büyük sayılarla çalışırken hangi ek türlerden yararlanılır ve bu türlerin sınırları nelerdir?
+
+    Kotlin'de büyük sayılarla çalışırken, BigInteger ve BigDecimal sınıfları kullanılır.
+    Bu sınıflar, standart veri tiplerinin sınırlarını aşan büyük sayılar ve kesirli sayılar için özel olarak tasarlanmıştır.
+
+    BigInteger: Bu sınıf, tam sayıları temsil etmek için kullanılır. BigInteger sınıfı, işaretli veya işaretsiz büyük tam sayıları temsil etmek için kullanılabilir.
+
+    val bigIntegerNumber = BigInteger("1234567890123456789012345678901234567890")
+
+    BigDecimal:  Bu sınıf, kesirli sayıları temsil etmek için kullanılır. Hassas ondalık sayı işlemleri için idealdir ve kayan noktalı sayıların karşılaştığı hassasiyet kaybı sorununu önler.
+
+    val bigDecimalNumber = BigDecimal("12345.67890123456789012345678901234567890")

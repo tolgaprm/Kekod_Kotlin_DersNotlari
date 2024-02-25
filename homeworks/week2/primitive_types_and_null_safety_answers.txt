@@ -1,0 +1,212 @@
+---------------------------------------------------------------------------------------
+Soru 1: val ile var arasındaki fark nedir?
+
+val değişkenlere bir değer atandıktan sonra, bu değişkenlerin değerini daha sonradan değiştiremeyiz (Yeni değer atayamayız). 
+
+var değişkenlere ise bir değer atadıktan sonra herhangi bir zamanda bu değişkene yeni bir değer ataması gerçekleştirebiliriz. 
+
+Aralarında performans olarak göz ardı edilebilecek bir performans farkı vardır. Biraz akademik bir yaklaşım gerçekleştirdiğimizde var ile tanımlanmış değişkenler val ile tanımlanmış değişkenlere göre biraz daha performanslı çalışır. Bunun böyle olmasının sebebi val değişkenlere atama gerçekleştirdikten sonra bir daha değeri değiştirilemeyeceği koşulunu içerdiği için ek bir maliyet getirir.
+
+Ama günlük hayat problemlerimizde val kullanmak daha avantajlı olacaktır. Çünkü sektördeki geliştirilen uygulamalarda Multi-Thread işlemlerin yoğunlukla kullanılmasıdır. "val" kullanımı daha güvenlidir çünkü bir değişkenin değeri bir kere belirlendikten sonra başka bir thread tarafından değiştirilemez, bu da potansiyel hata kaynaklarını azaltabilir.
+
+---------------------------------------------------------------------------------------
+
+Soru 2: Bir var değişkeni val gibi davranmasını nasıl sağlayabiliriz val kelimesini kullanmadan? Bunu neden yapmak isteriz? Örnek bir senaryo verin?
+
+Biz Kotlin'de bir değişken tanımladığımızda bu değişkenin arka planda get() ve set() fonksiyonlarını(veya property) otomatik bir şekilde oluşturur. 
+
+val bir değişken oluşturduğumuzda Kotlin arka planda bizim için sadece bu değişken için get() fonksiyonunu,
+var bir değişken için ise hem get() hemde set() fonksiyonlarını oluşturur. 
+
+Biz bu oluşturulan fonksiyonlara(property) visibility modifier'lar (public,private,protected,internal) ekleyebiliriz. Eğer biz var bir değişkenin set() fonksiyonuna private visibility modifier eklersek bu değişkenimiz artık set edilemez yani val gibi davranan bir değişken elde etmiş oluruz.
+
+Peki Bunu Neden Yapmak İsteyelim?
+
+Örneğin bir BankAccount isimli bir class'ımız var ve bu sınıf içerisinde banka hesabımız içerisinde toplam bakiyemizi gösteren bir balance isimli değişken var. Aynı zamanda withDraw() adında bir de fonksiyonumuz bukunuyor. withDraw() fonksiyonu hesaptan para çekme işlemi yapıyor. Para çekme işlemini yaptıktan sonra balance değerini güncellememiz gerekiyor. 
+
+Burada balance değişkenini var olarak tanımladık ve get() fonksiyonunu private olarak belirttik. Bu değişkeni ben sadece BankAccount içerisinde değiştirebilirim anlamına geliyor. Dışarıdan hiçbir kişi bu değişkeni değiştiremez. Dışarıdan sadece okunabilir bir değişken haline gelmiş olur. Bunu yaparak dışarıdan istenmeyen bir değişiklik gerçekleşmesini önlemiş oluruz.
+
+class BankAccount {
+
+    var balance: Double = 1000.0
+        private set
+
+    fun withdraw(amount: Double) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount
+            println("Çekilen Tutar: $amount TL, Yeni Bakiye: $balance TL")
+        } else {
+            println("Geçersiz işlem! Bakiye yetersiz veya geçersiz tutar.")
+        }
+    }
+}
+
+---------------------------------------------------------------------------------------
+
+Soru 3: "Değişmez" (Immutable) ve "Salt Okunur" (ReadOnly) kavramlarını açıklayın. val değişkenler neden aslında "değişmez" değil de "salt okunur" olarak açıklanmalıdır?
+
+ - val değişkenlerin Immutable olarak açıklanır. Ama aslında tam olarak Immutable değildir. ReadOnyl bir değişkendir. Kotlin official dokümantasyonunda da Immutable bir ifade geçer ama oradaki anlam olarak `değişmezlik` olarak kullanılıyor.
+
+ - Immutable: ifadesi değer atandıktan sonra değişkenin/nesnenin durumu hiçbir şekilde ilk değerden farklı olamaz anlamına gelmektedir.
+ - ReadOnly: ifadesi ise ilk değer atamasından sonra tekrar değer atanamaz demektir. Ama farklı zamanlarda farklı sonuçlar üretebilir. Yani değeri okunulabilen ama set edilemeyen değişkenlerdir.
+
+Peki ben ilk değer atamasından sonra tekrar değer ataması yapamıyorum val ifadelere, bu durumda nasıl her seferinde farklı sonuçlar üretebilir ki dediğinizi duyar gibiyim? Bunu bir örnek üzerinden açıklayayım.
+
+class StockPortfolio {
+    var stockCount: Int = 10
+    var stockPrice: Double = 25.0
+
+    val totalValue: Double
+        get() = stockCount * stockPrice
+}
+
+Bu örnekte sahip olduğumuz bir hisse senedinden ne kadar olduğunu ve o hisse senedinin kaç Tl olduğu bilgisi tutuluyor. Aynı zamanda bu bilgilere göre benim toplamda ne kadar Tl param olduğu bilgisini totalValue değişkeni ile tutuyoruz.
+
+totalValue değişkeninin val olduğunu ve bu değişkenin değerini get() ile stockCount ve stackPrice değeri çarpımı olduğuna dikkat edelim. Eğer ben yeni hisse eklediğimde ve totalValue değerimi kontrol ettiğimde güncel değerler ile çarpıp bana sonucu döndürmüş olacak. 
+
+Burada ben totalValue değişkenine yeni bir değer ataması yapmadık. Ama readOnly olabildiğinden dolayı get() fonksiyonu yazarak farklı sonuçlar üretebildik.
+
+- const val ile tanımlanan değişkenlerin IMMUTAVBLE olmasının nedeni const val ile yazılmış bir değişkenin hiçbir şekilde get() fonksiyonu eklemesi yapamıyoruz. Yani değerini ilk atamadan sonra hiçbir şekilde farklı olmuyor.
+
+---------------------------------------------------------------------------------------
+
+Soru 4: "Tip Çıkarımı" (Type inference) kavramını açıklayın. Hangi durumlarda tip belirtmek kesin olarak gereklidir?
+
+- Type Inference kavramı değişken tanımlarken, değişen türünü açık bir şekilde (Explicitly) belirtmediğimiz zaman eşitliğin karşı tarafındaki değere göre değişkenin türünün IDE tarafından tespit edilmesi.
+
+Number değişkenler için önemli bir nokta var. Orası da
+ - Eğer değer Int değer aralığı içerisinde ise tür Int olarak tanımlanır.
+ - Ama eğer değer Int değer aralığını geçiyorsa değişken türü Long olarak tanımlanır.
+
+Peki ben Type Inference'ı kullanmak istiyorum ama tipinin Long olmasını istiyorum çünkü o değişkenim ileride Int değer aralığını geçebilir diyorsanız.
+
+ val balance = 4000L // Bu durumda da 'L' ifadesini kullanarak bu değişkenin Long olduğunu belirtebiliriz. Küçük 'l' ifadesi bazı fontlarda 1'e(bir) benzediği için kullanılamıyor.
+
+Ondalıklı sayılar da varsayılan olarak değerler Double olarak belirlenir. Bu değişkeni float olarak belirtmek için 'f' veya 'F' kullanarak yapabiliriz. Yada tipi açık bir şekilde belirtiriz.
+
+ val PI = 3.14 // Double olur
+ val PIFLoat = 3.14f // Float olur.  
+
+ Hangi Durumlarda Türü Belirtmek Kesin Olarak Gereklidir?
+
+ - Değişkeni tanımladık ama değer atamasını ilk başta yapmadıysak, daha sonra yapacaksak belirtmek zorundayız.
+ - Memory kullanımını önemseyen bir program yazmak istediğimizde kullanırız. Örneğin yaş değeri için bir değişkenin Int olarak tutulmasına gerek yoktur normalde. Bu yaş değerini UByte(0-255) değişkeni tuttuğumuzda hafızayı daha verimli bir şekilde kullanmış oluruz. Int değişkeni hafızada 4 byte'lık bir yer tutarken UByte değişkenleri 1 Byte'lık bir yer tutar.
+
+---------------------------------------------------------------------------------------
+
+Soru 5: Kotlin'de tüm değişkenlerin sınıf olarak bulunması, "ilkel tip" (primitive type) olmadıkları anlamına gelir mi? Arka planda neler oluyor?
+
+Tabiki de hayır. Kotlinde'de primitive tip tipler vardır. Kotlin bunu runtime'de özel optimizayonlarla primitive haline çevirir ve bu şekilde kullanılır. 
+
+Primitive tiplerin, reference tipli değişkenlere göre farkı, hafızada daha az yer kaplaması ve primitive tiplere erişmek istediğimde daha hızlı bir şekilde erişebilmemiz.
+
+ - Primitive tipler referansları ve değerleri RAM üzerinde STACK denilen bölümde saklanırlar.
+ - Reference değerli tiplerin ise değeri RAM üzerinde HEAP bölümünde tutulur ve Stack'de ise bu değerin RAM üzerinde saklandığı alanın referansı saklanır.
+
+--------------------------------------------------------------------------------------
+
+Soru 6: "Tip Güvenliği" (Type Safety) kavramını açıklayın.
+
+Type safety, derleyicilerin kodu derlerken değişkenlerimizin tipleri ile atanan değerlerin tipleri arasında farklılık olması durumunda hata vermesi ve kodu derlememesidir. 
+Örneğin ben int bir değer tanımladım ve daha sonra programın herhangi bir yerinde bu int değişkenine ""(string) olan bir değer eşitlemeye çalıştım. Bu durumda eğer kullandığımız programlama dili Type Safety içeriyorsa o compile edilirken yada IDE bunu destekliyorsa
+kod yazarken böyle bir işlem yapamayacağımız hakkında uyarı verir. Bu, programlamada hataları önlemek ve kodun daha güvenli olmasını sağlamak için önemlidir.
+
+
+--------------------------------------------------------------------------------------
+
+Soru 7: Bir değişkeni nullable yapmak için ne yapmalıyız?
+
+ Bir değişkeni nullable yapmak için Null yapmak istediğimiz değişkenin sonunu '?' işareti eklenir.
+
+	val number: Int? = null
+	val name: String? = "Tolga"
+	val number2 = null // Burada da Type Inference'dan faydalanarak yaptık detayına 9.soru içerisinde vereceğim.
+
+--------------------------------------------------------------------------------------
+
+Soru 8: "Null Güvenliği" (Null Safety) kavramını açıklayın?
+
+  Yazdığımız programlarda bir değişkenin null olduğunda ve bu değişken üzerinde işlem yaptığımızda NullPointerException hatasını fırlattığını ve bunun uygulamamızı çökerttiğini biliyoruz. Null safety destekleyen dillerde değişkenlerin null olup olamayacağı açıkça belirtilir ve null değerlere karşı önlemler alınır. Bizde bir değişkenin null olup olmayacağını bu değişken türlerine göre anlarız ve ona göre önlem alarak NullPointerException(NPE) hatasını neredeyse sıfıra indirebiliriz.
+
+
+--------------------------------------------------------------------------------------
+
+Soru 9: Bir değişkene null değer atanır ve tip belirtilmezse Kotlin bu değişkeni nasıl yorumlar?
+
+    Eğer bir değişkenin tipi açık bir şekilde (explicit) olarak belirtilmezse ve değişkene null ataması yapılırsa, IDE Tip Çıkarımı (Type Inference) sırasında bu değişkenin tipini Nothing? olarak belirler.
+
+    val number = null
+
+    Nothing değişkenler daha çok herhangi bir fonksiyonun bir değer döndürmek zorunda olmadığı durumlarda kullanılır. Genelde exception fırlatmalarda görürüz. 
+    Unit'den farklıdır ama Unit bir boş da olsa bir değer döndüğünü söyler Nothing hiçbir şeydir.
+
+--------------------------------------------------------------------------------------
+
+Soru 10: İlkel bir değişkenin nullable olması ile null değer alamaması arasında bellek yönetimi açısından nasıl farklar vardır?
+
+ - Eğer bir değişken nullable olarak işaretlendi ise o değişken artık primitive olarak değil reference değerli bir nesne olarak temsil edilecektir.
+ 
+ - Burada biraz daha detaya inelim ve değişkenlerin bellek(RAM) üzerinde nasıl saklandığına bir göz atalım. RAM üzerinde STACK ve HEAP olarak adlandırılan iki bölüm bulunur.
+
+ - STACK bölümünde primitive ifadelerin değerleri bu bölümde tutulur. Primitive değişkenlerin hızlı olmasının sebeplerinden birisi bellekte bu bölümde tutulmalarıdır. Çünkü STACk, HEAP'den daha hızlı çalışır.
+ 
+ - HEAP bölümünde ise reference değerli olan tiplerin (class) değerleri ve nesneleri HEAP bölümünde, bu değerlerin adreslerini gösteren değişkenler ise STACK bölümünde tutulur.
+
+	diyelimki yukarıda bahsettiğim StockPortfolio sınıfından bir nesne oluşturalım
+
+	val myPortfolio = StockPortfolio()
+
+
+| STACK                       | HEAP                |
+|-----------------------------|---------------------|
+| Yerel Değişken              |                     |
+|                             | StockPortfolio  nesnesi var -- diyelimki adresi de 4213132    |
+|                             |      		    |
+| myPortfolio nesnesi de      |                     |
+| Heap bölümünde bulunan      |                     |                     
+| nesnenin referans adresine  |                     |
+| işaret eder-(4213132)       |                     |
+|-----------------------------|---------------------|  
+
+--------------------------------------------------------------------------------------
+
+Soru 11: Nullable bir değişkenin bir değere sahip olması ile null olması arasında bellek yönetimi açısından nasıl bir fark vardır? Null değer almış bir değişken bellekte yer kaplamaz diyebilir miyiz?
+
+ - Bu soru aslında yukarıdaki sorunun devamı niteliğinde yüzden yukarıda verdiğim bilgilerde yararlanarak cevaplamaya çalışacağım.
+ 
+ - Null alabilen değişkenlerin reference tipli olduğunu söylemiştik ve bunların nesnelerinin HEAP üzerinde ve bu değere işaret eden değişkenin ise STACK bölümünde tutulduğunu söylemiştik.
+ 
+ - Bu bilgilere göre HEAP tarafında bu ifade null olduğu için yer kaplamasa bile STACK üzerinde o değişken için halen bir miktar yer kaplanmış olur.
+
+--------------------------------------------------------------------------------------
+
+Soru 12: Nullable bir değişkenle çalışırken hangi operatörleri kullanırız? Bu operatörlerin kullanım farkları nelerdir? Hangisini ne zaman kullanmak daha anlamlıdır?
+
+ - Nullable ifadeleri kullanırken '?.'() , '!!' ve '?:' operatörlerini kullanırız.
+	
+    - ?. (Safe Call Operator): Bu operatör, bir ifadenin null olup olmadığını kontrol eder ve null ise ifadeyi çağırmaz, null değilse normal şekilde devam eder.  
+
+	val b: String? = null 
+	println(b?.length)
+   
+    - !! (Not null Assert): Bu operatörü kullandığımızda IDE'ye bu değişken çağrıldığında null olmayacağını zorla garanti ettiğimi belirtiyoruz. Eğer değişkenin çağrıldığı anda null olur ise NullPointerException hatasını döner ve aynı zamanda
+	
+	programımızı çökertir. Ama null değil ise istediğimizi işlem başarılı bir şekilde gerçekleştirilir. Bu operatörü genellikle kullanılması çok önerilmez çünkü NPE hatasına neden olur. 
+
+   - ?: (Elvis Operatör): Nullable bir referansınız olduğunda, b, "eğer b null değilse, onu kullanın, aksi takdirde null olmayan bir değer kullanın" diyebilirsiniz. 
+		
+	val b:String? = null
+
+	println(b?.length ?: -1) // Burada eğer b null değil ise içerisinde bulundurduğu string ifadenin uzunluğunu çıktı olarak verecektir. Ama eğer ifade null ise -1 çıktısını verecektir.
+
+   - Hangisini ne zaman kullanmak.
+
+	Eğer nullable olan bir ifadeyi kullandığımız yerdeki bilginin doğru olarak gösterilmesi çok önemli ise bu kısımda !! Operatörünü kullanırız ve uygulamamızın çökmesini isteriz. Ama eğer orada gösterilecek bilgi çok önemli değil ise ?. Operatörünü 
+
+kullanabiliriz. Eğer null olduğunda başka bir değer gösterme ihtiyacımız var ise o zamanda ?: operatörünü kullanırız.
+
+
+
+
+
+	

@@ -1,0 +1,78 @@
+Soru 1: "İşaretsiz" (Unsigned) değişkenler ne demektir? İşaretli olanlarla aralarındaki fark nedir?
+
+ İşaretsiz değişkenler 0 ve pozitif sayıları temsil eden sayılara denir. Yani bu değişkenler içerisinde herhangi bir
+ şekilde negatif sayılar bulunduramayız. Yapacağımız işler sadece pozitif sayılarla ise bu değişkenleri kullanmak bize
+ daha fazla bir değer aralığında işlem yapmamızı sağlar.
+ Byte üzerinden örnek verecek olursak, Byte'ın değer aralığı -128 ile 127'dir.
+ UByte'ın (Unsigned Byte'ın) değer aralığı ise 0 ile 255'dir.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 2: "İşaretsiz" değişkenler nasıl bir sınıf yapısında tutulurlar? Bu neden önemlidir?
+
+    İşaretsiz sayılar, aynı değer aralığındaki işaretli karşılık türünü içeren tek bir depolama özelliğine sahip satır içi (inline value classes) sınıflar
+    olarak uygulanır.
+
+    İşaretsiz sayılar, inline value sınıflar olarak uygulanmıştır. Inline sınıflar, runtime üzerinde ek bir maliyet olmadan hafif
+  sarmalayıcı sınıfların tanımlanmasına olanak tanıyan bir programlama dilindeki bir özelliktir.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 3: "İşaretsiz" değişkenlerin harf gösterimi nasıldır?
+
+    İşaretsiz bir sayıyı tanımlamak için sadece tip belirtmek yeterli olmuyor. İlk değer atamasında sayının sonun
+    'u' veya 'U' harflerini kullanmalıyız.
+
+    val uByteNumber:UByte = 34u
+    val uShortNumber:UShort = 34u
+    val uByteNumber = 34u // Eğer type Inference ile tanımlama yaparsak tipimiz UInt olacaktır.
+
+    Yine atama sırasında tipimizi ULong olarak atanmasını istiyorsa `UL` eklemesi yapmamız gerekiyor.
+
+    val uLongNumber = 435UL
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 4:  "`val a1 = 42u` ve `val a2 = 0xFFFF_FFFF_FFFFu`" değişkenlerin tipleri ne olur? Neden?
+
+ İlk değişkenin tipi 'UInt' olur çünkü girilen değer 'Int' değer aralığındadır ve unsigned 'u'
+ harf gösterimi almıştır. İkinci değişkenin tipi ise 'ULong' olur çünkü verilen 'Hexadecimal'
+ değer, 'Long' değer aralığındadır
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 5: "İşaretsiz" "Long" harf gösterimi nasıl yapılır?
+
+  'İşaretsiz' 'Long' harf gösterimi 'uL' veya 'UL' kullanılarak gösterilir.
+
+------------------------------------------------------------------------------------------------------------------------
+Soru 6: "İşaretsiz" değişkenlerin kullanım amaçları nelerdir?
+
+ - İşaretsiz değişkenlerin kullanım amacı sadece 0 ve pozitif değerleri içeren sayıları daha az yer kaplayarak ve daha fazla
+ değer aralığı içerisinde çalışmak için kullanılabilir.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Soru 7: "İşaretsiz" değişkenlerle yapılan matematiksel işlemlerde, özellikle büyük sayılarla çalışırken
+karşılaşılabilecek taşma (overflow) ve taşma olmaması (underflow) durumları için Kotlin nasıl bir yönetim sağlar?
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+8- "İşaretsiz" değişkenlerin sınırlamaları nelerdir?
+
+    UByte -> 0 .. 255
+    UShort -> 0 .. 65,535
+    UInt -> 0 .. 4,294,967,295 (232 - 1)
+    ULong -> 0 .. 18,446,744,073,709,551,615 (264 - 1)
+
+------------------------------------------------------------------------------------------------------------------------
+
+9 - "İşaretsiz" değişken türleri (UInt, ULong vs.) kullanırken, Java API'leri ile uyumluluk konusunda ne gibi sorunlar olabilir?
+Bunları çözmek için neler yapabilirsiniz?
+
+  Java, işaretsiz değişkenleri desteklemediği için sorunlar yaşanabiliyor. Java 'int' bir değer
+      beklerken, Kotlin'de 'UInt' vermek uyumsuzluk sağlayabiliyor. Buna çözüm olarak işaretsiz
+      değişkenleri işaretli değişkenlere dönüştürebiliriz. Bir diğer sorun ise Kotlin'de 'UInt'
+      olarak tanımladığımız bir değişken Java'da 'int' bir değişkene dönüştürülürken veri kayıpları
+      yaşanabilir.
