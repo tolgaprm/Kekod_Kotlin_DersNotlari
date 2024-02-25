@@ -7,8 +7,7 @@ RAM üzerinde `STACK` ve `HEAP` olarak adlandırılan iki bölüm bulunur.
   sebeplerinden
   birisi bellekte bu bölümde tutulmalarıdır. Çünkü `STACK`, `HEAP`'den daha hızlı çalışır.
 
-- `HEAP` bölümünde ise reference değerli olan tiplerin (class) değerleri ve nesneleri `HEAP` bölümünde,
-- bu değerlerin adreslerini gösteren değişkenler ise `STACK` bölümünde tutulur.
+- `HEAP` bölümünde ise reference değerli olan tiplerin (class) değerleri ve nesneleri `HEAP` bölümünde, bu değerlerin adreslerini gösteren değişkenler ise `STACK` bölümünde tutulur.
 
 
   ![](../../screenshots/week3/stack_heap.jpg)
@@ -40,7 +39,7 @@ RAM üzerinde `STACK` ve `HEAP` olarak adlandırılan iki bölüm bulunur.
 
     Kotlin dilinde bir değişkenin tipi üzerinde `compiler` tarafından otomatik olarak dönüşümün gerçekleştirilme
     işlemidir. Bu şekilde açık bir şekilde `Type Conversion` işlemini yapmadan o tipin sahip olduğu bütün özellikleri
-    methodları kullanmamıza sağlar.
+    methodları kullanmamızı sağlar.
 
     Yine yukarıdaki örnekten devam edelim, `value` değişkeninin `String` olup olmadığını kontrol ettik ve 
     `if` içerisinde açık bir şekilde `Type Conversion` işlemini yapmadan `String` tipine ait olan `length` özelliğini
@@ -70,17 +69,17 @@ RAM üzerinde `STACK` ve `HEAP` olarak adlandırılan iki bölüm bulunur.
     `Short` ve `Byte` değerlerlerini topladığımızda ise tip `Int` olarak belirlenir. Burada yine dilin bu değerler için sağlamış
     olduğu özel optimizasyonlar sebebi ile `Int` olarak atanır.
 
-    #### Peki neden `Int.MAX_VALUE + Int.MAX_VALUE` toplamını yaptığımızda tip `Long` olarak belirlenir?
+    #### Peki neden `Int.MAX_VALUE + Int.MAX_VALUE` toplamını yaptığımızda tip `Int` olarak belirlenir?
     
     Burada IDE her bir toplama işlemi yapıldığında hangi değer aralığına geleceğini kontrol etmiyor. Bunu yapamaz mı?
     İsterse tabiki yapar sadece bir if kontrolü gerekiyor. Ama biz her toplama işlemi yaptığımızda arka planda bu işlem 
-    kontrolü sağlanacak ve bu da ek bir maliyet getirir.
+    kontrolü sağlanacak ve bu da ek bir maliyet getirecektir.
     Buradan `Defansif Programlama` kavramına bir geçiş yapalım.
 
     - #### Defansif Programlama Nedir?
     
         Yazılımcıların yazdıkları kodda olası tüm durumları (edge case) ele alması durumudur.
-        Burada gerçekten bütün edge case durumlarını değerlendirmelimiyiz. Bu en uç noktadaki edge case
+        Burada gerçekten bütün edge case durumlarını değerlendirmelimiyiz? Bu en uç noktadaki edge case
         durumunu değerlendirmek bize bir performans kaybı yaratır mı? Eğer yaratacaksa bunu gerçekten kullanmalımıyız?
         
         Yukarıdaki örnek gibi eğer her toplama işleminde bu değerlerin `Int` max değerini geçtiğini kontrol yapılsa idi 
@@ -162,7 +161,7 @@ RAM üzerinde `STACK` ve `HEAP` olarak adlandırılan iki bölüm bulunur.
 
 ### 5. Boolean
 - ### Boolean Bir Değişken Tanımlama
-  - 2 byte yani 8 bit alan kaplar.
+  - 1 byte yani 8 bit alan kaplar.
   - `true` yada `false` ataması için kullanılır. Aynı zamanda `null` değerde alabilir.
   - Bazı programlama dillerinde `0` veya `1` de boolean olarak kabul edilebilir ama Kotlin'de kabul edilmez.
 
@@ -242,7 +241,7 @@ olması için iki değerinde `false` olması gerekiyor.
     String değişkenler immutabledır. Yani bir kez tanımlandıktan sonra, değerini değiştiremeyiz yada yeni bir değer
     set edilemez.
     > Şimdi aklımıza söyle bir soru gelmiş olabilir. Ben `var` keywordünü kullanarak `String` tanımladıktan sonra o değişkenin
-    değerini değiştirebiliyorum. Ama sen burada yeni bir değer atayamazsın ve değiştiremezsin diyorsun. Tam olarak anlamdım
+    değerini değiştirebiliyorum. Ama sen burada yeni bir değer atayamazsın ve değiştiremezsin diyorsun. Tam olarak anlayamadım
   > diyebilirsin?
   > #### Şimdi gelelim cevabımıza:
   > Bunun arkasındaki yatan sebep `String` değişkenlerin bellekte saklanma durumlarından dolayıdır. Hatırlarsanız bu haftanın
@@ -424,7 +423,7 @@ olması için iki değerinde `false` olması gerekiyor.
     val shortPrimitiveArray2 = shortArrayOf()
     ```
     Bize sunulan hazır fonksiyonlar ilede bir array oluşturabiliriz. Fonksiyon içerisinde herhangi bir
-    değer vermezsek bize bpş bir array oluşturur. Ama bizim istediğimiz değerler ile bir array oluşturulmasını
+    değer vermezsek bize boş bir array oluşturur. Ama bizim istediğimiz değerler ile bir array oluşturulmasını
     istiyorsak o değerleri de fonksiyon parametresine argüman olarak verilebilir.
 
   - ### Object Type Array ve Primitive Type Array’ler Arasında Dönüşüm İşlemleri
@@ -556,7 +555,7 @@ olması için iki değerinde `false` olması gerekiyor.
     Kullandığımız array yapılarını `set`, `list` ve `map` veri yapılarına dönüştürebiliriz.
 
     > `Set` yapısı içerisinde değer olarak, benzersiz elemanları içeren bir yapıdır. O yüzden array'i set'e çevirdiğimizde
-     ve print ettiğimzde sadece a,b,c göreceğiz ikinci c'i göremeyiz.
+     ve print ettiğimizde sadece a,b,c göreceğiz ikinci c'i göremeyiz.
     >```kt
     >val simpleArray = arrayOf("a", "b", "c", "c")
     >println("Converted to Set: ${simpleArray.toSet()}")
