@@ -1,4 +1,4 @@
-package Kekod2024.controlFlow
+package Kekod2024.basics.controlFlow
 
 fun main() {
     // Operator Fonksiyonları için bir tablo oluştur bence çok güzel durur.

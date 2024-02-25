@@ -1,4 +1,4 @@
-package Kekod2024
+package Kekod2024.basics
 
 fun main() {
     val name: String = "Tolga"

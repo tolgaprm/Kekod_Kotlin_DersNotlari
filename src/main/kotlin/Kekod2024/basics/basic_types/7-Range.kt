@@ -1,4 +1,4 @@
-package Kekod2024.basic_types
+package Kekod2024.basics.basic_types
 
 fun main() {
     /**

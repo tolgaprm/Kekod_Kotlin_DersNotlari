@@ -1,4 +1,4 @@
-package Kekod2024
+package Kekod2024.basics
 
 // Bu fonksiyonda bir başlangıç noktasıdır.
 // Bu args başlangıç parametresi vermek için kullanılır.
