@@ -77,12 +77,12 @@ Ama eğer sayımız `Int` değerin alabileceği max değeri geçti ise `Long` ol
 
 ### 5 - `var` ile tanımlanmış bir değişkeni, `var` keyword'unu kullanarak `val` değişken nasıl yapılabilir?
 
-Örneğin bir `var isMale = true` değişkenimiz var. Her bir değişkenimizin arka planda
-yazılan `get()` ve `set()` fonksiyonu vardır.(Bunu ilerideki derslerde daha detaylı göreceğiz property vs field
-farklarında)
+Biz Kotlin'de bir değişken tanımladığımızda bu değişkenin arka planda `get()` ve `set()` fonksiyonlarını otomatik bir şekilde oluşturur.
 
-Biz bu fonksiyonlara visibility modifier ekleyebiliriz.
-Eğer `set()` fonksiyonuna `private` visibility modifier eklersek değiştirilemez bir değişken elde etmiş oluruz.
+- `val` bir değişken oluşturduğumuzda Kotlin arka planda bizim için sadece bu değişken için `get()` fonksiyonunu,
+- `var` bir değişken için ise hem `get()` hemde `set()` fonksiyonlarını oluşturur.
+
+Biz bu oluşturulan fonksiyonlara(property) visibility modifier'lar `(public,private,protected,internal)` ekleyebiliriz. Eğer biz `var` bir değişkenin `set()` fonksiyonuna private visibility modifier eklersek bu değişkenimiz artık set edilemez yani `val` gibi davranan bir değişken elde etmiş oluruz.
 
    ```kt
   class Ders1 {
