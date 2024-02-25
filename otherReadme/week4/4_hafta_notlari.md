@@ -56,8 +56,9 @@ gerçekleştirmek için kullanılır.
       işaret çarpılırsa `+` olacağından sonuç `10` olacaktır.
     - `a++` :  Bu ifade, önce mevcut değeri kullanır ve ardından değeri bir artırır. Yani, a'yı kullanır ve sonra a'yı
       bir artırır
-    - `--a`: Bu ifade, önce değeri bir artırır ve ardından artırılmış değeri kullanır. Yani, a'yı bir artırır ve sonra
-      artırılmış değeri kullanır
+    - `++a`: Bu ifade, önce değeri bir artırır ve ardından artırılmış değeri kullanır. Yani, a'yı bir artırır ve sonra
+      artırılmış değeri kullanır.
+    > Bu kullanımın `a--` ve `--a` kullanımları da vardır.
   ```kt
    val sayi1 = 5
    val sayi2 = 4
@@ -72,9 +73,9 @@ gerçekleştirmek için kullanılır.
   ```kt
   var numberOne = 10
   println("NumberOne: ${numberOne}")
-  println("NumberOne: ${numberOne++}")
-  println("NumberOne: ${numberOne}")
-  println("NumberOne: ${++numberOne}")
+  println("NumberOne: ${numberOne++}") // Önce mevcut değeri okur daha sonra artırma işlemini yapar.
+  println("NumberOne: ${numberOne}") 
+  println("NumberOne: ${++numberOne}") // Önce değeri bir artırır daha sonra artıtılan değeri kullanılır.
   
   /* Sonuç
   NumberOne: 10
@@ -92,9 +93,61 @@ gerçekleştirmek için kullanılır.
         Diğer durumlarda, yani ilk eleman nullable değilse, direkt olarak operatör(+,-,/) kullanmak daha mantıklı bir tercih
         olacaktır.
        ```kt
-       val sayı1:Int? = 10
+       val nullableNumber:Int? = 10
        val sayı2 = 3
-       println(sayı1?.plus(sayı2))
+       println(nullableNumber?.plus(sayı2))
+      
+       println(nullableNumber + sayi2) // Bu şekilde yaptığımızda IDE bize bir null kontrolü gerçekleştirmen
+      // gerekiyor diyor. `+` operatörleri nullable receiver olarak desteklenmiyor.
+      
+      // Eğer ben halen + operatörleri kullanacağım diyorsanız o zaman öncesinde bir null check yapmamız gerekiyor.
+      
+       if (nullableNumber != null) {
+        println(nullableNumber + 1)
+       }
+      
+       nullableNumber?.let { 
+           println(nullableNumber + 1)
+       }
       ```
 
 ### 2. Operator Overloading
+-  Bu operatör fonksiyonları, ilgili veri türlerinde (sayılar, boolean'lar vb.) kullanılabilecek şekilde tanımlanmıştır. 
+    Ayrıca, sınıf ve tiplerin kendi operatör fonksiyonlarını aşırı yüklemeleri (operator overloading) mümkündür, bu sayede özel türler üzerinde operatörlerin davranışını özelleştirmek mümkün olur.
+    Bu, belirli bir tür üzerinde kullanılan operatörün farklı durumlar veya türler için nasıl davranacağını özelleştirmenizi sağlar.
+
+    ### Gelin buna bir örnek üzerinden bakalım.
+
+    ```kt
+   class Vektor(var x: Int, var y: Int) {
+   
+        // Toplama operatörünü aşırı yükleyelim (+)
+        operator fun plus(other: Vektor): Vektor {
+            return Vektor(x + other.x, y + other.y)
+        }
+
+        // Çıkarma operatörünü aşırı yükleyelim (-)
+        operator fun minus(other: Vektor): Vektor {
+            return Vektor(x - other.x, y - other.y)
+        }
+
+        // Çarpma operatörünü aşırı yükleyelim (*)
+        operator fun times(scalar: Int): Vektor {
+            return Vektor(x * scalar, y * scalar)
+        }
+    }
+   ```
+    Bu örnekte, bir `Vektor` sınıfı oluşturduk. Bu sınıf, iki boyutlu bir vektörü temsil eder. Sınıf içinde,` plus, minus ve times` operatör fonksiyonlarını aşırı yükleyerek(overload), bu operatörlerin bu vektör sınıfına özel bir davranış sergilemesini sağladık.
+    Şimdi, bu Vektor sınıfından iki örnek oluşturduk: vektor1 ve vektor2. Ardından, bu iki vektör arasında plus (toplama) operatör kullanarak bir toplama işlemi gerçekleştirdik.
+    ```kt
+    val vektor1 = Vektor(x = 2, y = 3)
+    val vektor2 = Vektor(x = 4, y = 6)
+
+    val vektorPlus = vektor1 + vektor2 // x= 6, y= 9
+
+    // Eğer biz bu operator fonksiyonlarını kullanmasaydık ve iki vektörü toplamak istediğimizde şu şekilde bir kullanım yapacaktık.
+    val vektorPlusWithoutOperatorOverload = Vektor(x = vektor1.x + vektor2.x, y = vektor2.y + vektor2.y)
+   ```
+
+
+   
