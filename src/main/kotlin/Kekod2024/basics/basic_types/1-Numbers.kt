@@ -45,9 +45,8 @@ fun main() {
     // /*
     //* Reference vs Value
     //* */
-    val number: Int = 127
-    val boxedNumber: Int? = number
-    val anotherBoxedNumber: Int? = number
+    val boxedNumber: Int? = 127
+    val anotherBoxedNumber: Int? = 127
     println(boxedNumber === anotherBoxedNumber) // true
 
 

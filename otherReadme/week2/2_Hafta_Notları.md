@@ -178,13 +178,8 @@ farklı sonuçlar elde edebilmiş olup, değiştirilmiş oldu. İşte tam da bu 
        // Eğer null değil ise işlemi gerçekleştirir.
       ```
 - ### Peki ne zaman `!!` veya `?.` kullanmalıyız? Bunun Best Practice Nedir?
-    // TODO Daha sonra yazacağım.
-  // ******************
-  // ******************
-  // ******************
-  // ******************
-  // ******************
-  // ******************
+  Eğer `nullable` olan bir ifadeyi kullandığımız yerdeki bilginin **doğru olarak gösterilmesi çok önemli** ise bu kısımda `!!` operatörünü kullanırız ve uygulamamızın çökmesini isteriz. 
+  Ama eğer orada gösterilecek bilgi çok önemli değil ise `?.` operatörünü kullanabiliriz. Eğer `null` olduğunda **başka bir değer gösterme ihtiyacımız** var ise o zamanda `?: - elvis operatörünü`  kullanırız.
 
 - ### Primitive Tipleri Nullable Yaptığımızda Ne Olur?
 
@@ -199,7 +194,7 @@ farklı sonuçlar elde edebilmiş olup, değiştirilmiş oldu. İşte tam da bu 
 
     ![](../../screenshots/week2/nullables_decompiled.png)
     > Üsteki Java koduna baktığımızda `studentAge` değişkenin `Integer`,
-     `isMale` değişkeninin `Boolean` olarak yazıldığına dikkat edelim. Daha önce Java yazmadıysa
+     `isMale` değişkeninin `Boolean` olarak yazıldığına dikkat edelim. Daha önce Java yazmadıysanız
     tam olarak ne söylemek istediğimi anlamamış olabilirsiniz. Java'da primitive değişkenlerin tiplerinin yazımı
    genelde küçük harfle başlar. Örnek `int`, `float`, `boolean`, `double` gibi. Yine aynı şekilde Java'da reference tipe
   > sahip bir değişken oluşturmak istediğimizde `Integer`, `Float`, `Boolean`, `Double` kullanılır.
@@ -270,9 +265,9 @@ Ondalıklı sayılar için;
 - ### Reference Değer Karşılaştırmasında Byte Aralığının Oluşturduğu Spesifik Durum
   
   ```kt
-    val number: Int = 127 // Byte aralığı içerisinde
-    val boxedNumber: Int? = number
-    val anotherBoxedNumber: Int? = number
+    // Byte aralığı içerisinde
+    val boxedNumber: Int? = 127
+    val anotherBoxedNumber: Int? = 127
     println(boxedNumber === anotherBoxedNumber) // true
 
     val number2: Int = 129 // Byte aralığı içerisinde değil.
