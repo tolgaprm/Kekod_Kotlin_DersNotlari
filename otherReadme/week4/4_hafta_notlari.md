@@ -149,5 +149,129 @@ gerçekleştirmek için kullanılır.
     val vektorPlusWithoutOperatorOverload = Vektor(x = vektor1.x + vektor2.x, y = vektor2.y + vektor2.y)
    ```
 
+### 3. ControlFlow  If-Else
 
-   
+`If` ifadesi, bir koşulun doğru veya yanlış olmasına bağlı olarak belirli bir kod bloğunu çalıştırmak için kullanılır. 
+
+Kotlin'de `If` kullanımının iki farklı kullanımı vardır.
+
+ ###  **1 - State Olarak Kullanımı**
+```kt
+val answer = readln()
+
+if (answer.contains("Evet", ignoreCase = true)) {
+    println("Öğrenci")
+} else {
+    println("Öğrenci Değil")
+}
+
+
+if (answer.contains("Evet", ignoreCase = true)) println("Öğrenci")
+else println("Öğrenci Değil")
+
+
+if (answer.contains("Evet", ignoreCase = true)) println("Öğrenci") else println("Öğrenci Değil")
+```
+
+Yukarıdaki if işlemini 3 farklı şekilde yazıldığını görebiliriz. Fakat bunun en doğru kullanım şekli
+ilk baştaki şekilde `{}` kullanılarak yazılan şeklidir.
+
+ ### **2- Expression Olarak Kullanımı**
+
+Yaptığımız if kontrolleri sonrasında yapacağımız işlemlerden sonra bir değişkene değer atamaya ihtiyacımız var ise bunu
+expression kullanımı ile yapabiliriz. Burada if veya else blokları içerisindeki son satır değer olarak değişkene atanır.
+
+Expression kullanımında değişkenin tipini belirtmezsek Ide TypeInference ile o tipi belirleyebilir ama best practice olarak
+değişkenin tipini belirtmek daha doğru olacaktır.
+
+```kt
+val result: String = if (answer.contains("Evet", ignoreCase = true)) {
+    println("Expression kullanımı")
+    "Öğrencidir"
+} else {
+    println("Expression kullanımı")
+    "Öğrenci Değil"
+}
+
+println(result)
+```
+
+- ### Kotlin'de Neden Ternary(`condition ? then : else`) Operatörü Yoktur?
+
+Kotlin'de `if-else` kullanımlarının expression olarak kullanılabildiği için `ternary` operatörü yoktur. Ternary yerine aşağıdaki
+gibi bir kullanım yapabiliriz.
+```kt
+val max = if (a > b) a else b
+```
+
+- ### `if` `else if` Kullanımı
+`if - else if` ifadesi, bir dizi koşulu sırayla kontrol etmek ve ilk doğru koşula uyan kod bloğunu çalıştırmak için kullanılır. Yani, her bir else if bloğu, bir önceki koşulun yanlış olduğu durumu kontrol eder.
+
+```kt
+if (koşul1) {
+    // Koşul1 doğruysa buradaki kod bloğu çalışır
+} else if (koşul2) {
+    // Koşul1 yanlış, ancak koşul2 doğruysa buradaki kod bloğu çalışır
+} else if (koşul3) {
+    // Koşul1 ve koşul2 yanlış, ancak koşul3 doğruysa buradaki kod bloğu çalışır
+} else {
+    // Hiçbir koşul doğru değilse buradaki kod bloğu çalışır
+}
+
+
+val not = 75
+
+if (not >= 90 && not <= 100) {
+    println("Notunuz A")
+} else if (not >= 80 && not < 90) {
+    println("Notunuz B")
+} else if (not >= 70 && not < 80) {
+    println("Notunuz C")
+} else if (not >= 60 && not < 70) {
+    println("Notunuz D")
+} else {
+    println("Notunuz F")
+}
+```
+ #### if - else Kullanımlarında Önemli Bir Nokta
+
+> Eğer ben `if` içerisinde bir değişkeni kontrol ediyorsam `else-if` bloklarında da aynı değişkenin farklı durumlarını 
+> kontrol etmem gerekiyor.
+> Eğer `else-if` kısmında başka bir değişkeni de kontrol etmem gerekiyor ise ya o değişken ilk if bloğunda da olmalı yada
+> o durum için ayrı bir if yazımı yapmalıyız.
+
+Birden fazla şartlı durumumuz var ise ve bunları `if-else if` blokları ile değil de hepsi için ayrı ayrı `if` blokları olarak
+yazdığımızda çok verimli bir işlem yapmamış oluruz. Bunun nedeni `if-else if` bloklarında doğru case bulunduktan sonra
+diğer caselerin kontrolü gerçekleştirilmez. Ama aşağıdaki gibi bir kontrol gerçekleştirdiğimizde doğru case bulunsa bile bütün if koşulları kontrol edilecektir.
+```kt
+    if (grade >= 90 && grade <= 100) {
+        println("Notunuz A")
+    }
+    if (grade >= 80 && grade < 90) {
+        println("Notunuz B")
+    }
+    if (grade >= 70 && grade < 80) {
+        println("Notunuz C")
+    }
+    if (grade >= 60 && grade < 70) {
+        println("Notunuz D")
+    }
+```
+
+> Bazı durumlarda `if-else` yazmaktansa if bloğunun içinde bir durumu kontrol edip, o duruma uymayan durumlar için bir hata fırlatma (throw) veya bir değer döndürme (return) gibi ifadelerle kodu sonlandırma yöntemidir. Bu durum, kodunuzu daha okunabilir ve sade hale getirebilir.
+> Örnek olarak bir fonksiyon içerisinde 
+>```kt
+>fun validatePassword() {
+>   val password = "password23"
+>
+>    if (password.isBlank()) {
+>        return
+>    }
+>
+>    if (password.length < 6) {
+>        return
+>    }
+>   
+>   // Password doğru ise gerekli işlemleri yapmaya devam et
+>}
+>```

@@ -153,3 +153,11 @@
 
 
 - Operator Overloading
+
+- if Koşulu
+  - State Olarak Kullanımı
+  - Expression Olarak Kullanımı
+  - Kotlin'de Neden Ternary(`condition ? then : else`) Operatörü Yoktur?
+  - `if` `else if` Kullanımı
+
+- When Kullanımı
