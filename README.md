@@ -161,3 +161,9 @@
   - `if` `else if` Kullanımı
 
 - When Kullanımı
+
+- For Loop
+
+- While Loop
+
+- Destructuring declarations Nedir?

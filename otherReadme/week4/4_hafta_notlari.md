@@ -320,3 +320,75 @@ when (any) {
 }
 ```
 `when` ifadesi tip kontrolü için de kullanılabilir. Bu şekilde, değişkenin hangi türden olduğunu kontrol edebilirsiniz.
+
+### 5. For Loop
+
+Kotlin'de `for` döngüsü, belirli bir aralıkta veya bir koleksiyon üzerinde döngü oluşturmak için kullanılır.
+
+####  3 farklı şekllide for tanımlanabilir
+* `value in list`                     şeklinde value değerlerini alabilirsiniz.
+* `index in list.indices`             şeklinde index değerlerini alabilirsiniz.
+* `(index,value) in list.withIndex()` şeklinde index ve value değerlerini alabilirsiniz.
+
+```kt
+    val countryCodeArray = arrayOf("tr", "az", "en", "fr")
+
+    for (value in countryCodeArray) {
+        print("$value - ")
+    }
+    // Çıktı: tr - az - en - fr
+
+    for (index in countryCodeArray.indices) {
+        println("$index.değeri: ${countryCodeArray[index]} ")
+    }
+    /* Çıktı:
+      0.değeri: tr 
+      1.değeri: az 
+      2.değeri: en
+      3.değeri: fr
+     */
+
+    // Destructuring declarations
+    // Indexed value
+    for ((index, value) in countryCodeArray.withIndex()) {
+        println("Index: $index  Value:$value")
+    }
+    /* Çıktı
+    Index: 0  Value:tr
+    Index: 1  Value:az
+    Index: 2  Value:en
+    Index: 3  Value:fr
+    */
+```
+
+- ### İç içe Düngüler
+```kt
+for (i in 1..5) {
+    for (j in 1..3) {
+        println("$i - $j")
+    }
+}
+```
+Kotlin'de iç içe for döngüleri kullanımı da yapabiliriz.
+
+### 6. While Loop
+`while` ve `do-while` koşulları sağlandığı sürece gövdelerinde var olan kod bloklarını sürekli olarak çalıştırır.
+
+- `while` döngüsü, belirli bir koşul doğru olduğu sürece döngünün çalışmasını sağlar. Koşul her zaman döngünün başında kontrol edilir ve koşul yanlış olduğunda döngü sona erer.
+- `do-while` döngüsü, koşul doğru veya yanlış olsa bile döngünün en az bir kez çalışmasını sağlar. Koşul döngünün sonunda kontrol edilir.
+
+```kt
+var i = 0
+
+while (i < 5) {
+    println(i)
+    i++
+}
+// ---------------------
+var j = 0
+
+do {
+    println(j)
+    j++
+} while (j < 5)
+```
