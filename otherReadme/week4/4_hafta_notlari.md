@@ -392,3 +392,36 @@ do {
     j++
 } while (j < 5)
 ```
+
+
+- ### Destructuring declarations Nedir?
+Destructuring declarations Kotlin'de bir veri yapısının parçalarını ayrı değişkenlere
+ayırmanın bir yoludur. Bu yapıyı `data class` konusuna geçtiğimizde daha detaylı bir şekilde anlatacağım.
+Örneğin isim ve yaş bilgilerini içeren Person adında  bir data sınıfımız var.
+```kt
+data class Person(val name: String, val age: Int)
+```
+Daha sonra bu Person sınıfından bir nesne oluşturdukdan sonra name ve age değişkenlerini ayrı değişkenlere atamak
+istedik. Burada Destructuring declaration'dan faydalanabiliriz.
+
+```kt
+val person = Person("Tolga",23) // person nesnesini oluşturduk.
+val (name,age) = person // Destructuring declarations Kullanımı
+println("Name: $name Age:$age")
+```
+
+Destructuring declarations aynı zamanda `for` döngülerinde ve diğer bazı veri yapılarında da kullanılabilir.
+```kt
+val countryCodeArray = arrayOf("tr", "az", "en", "fr")
+
+for ((index, value) in countryCodeArray.withIndex()) {
+        println("Index: $index  Value:$value")
+}
+// ------------
+val map = mapOf("a" to 1, "b" to 2, "c" to 3)
+
+for ((key, value) in map) {
+    println("Key: $key, Value: $value")
+}
+```
+Yukarıdaki örnekte, for döngüsünde her bir çifti `key` ve `value` olmak üzere ayrı değişkenlere atarız. Bu, `map.keys` ve `map.values` gibi yöntemler kullanarak aynı işlemi yapmaktan daha pratik ve okunabilir bir yaklaşımdır.
