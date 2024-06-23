@@ -1,3 +1,4 @@
+
 ### 1- Operatörler
 
 Operatörler, çeşitli işlemleri gerçekleştirmek için kullanılan sembol veya işaretlerdir. Kotlin'deki operatörler

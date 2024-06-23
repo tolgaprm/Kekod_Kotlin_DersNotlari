@@ -167,3 +167,29 @@
 - While Loop
 
 - Destructuring declarations Nedir?
+
+
+## 5. Hafta Notları
+
+### İçindekiler
+
+ - İnfix Fonksiyonlar
+ - Extension Fonksiyonlar
+ - Local Fonksiyonlar
+ - HigherOrder Functions
+ - Inline - Noinline - Crossinline
+
+## 6. Hafta Notları
+
+> [6.Haftanın Notlarına Buradan Ulaşabilirsiniz](otherReadme/week6/6_hafta_notlari.md)
+
+### İçindekiler
+
+ - Object Oriented Programming Mantığı Nedir?
+ - Visibility Modifier (public, private, protected ,internal)
+ - Accessibility Modifier (open, final)
+ - Primary ve Secondary Constructor
+ - Abstract (Soyut) Kavramı (Neyi Open neyi abstract yapacağım tekrar dinle oaryı ve düzenle buraları)
+ - Abstract Class
+ - Interface
+    - Interface yapıları state tutabilir mi?
