@@ -189,7 +189,7 @@
  - Visibility Modifier (public, private, protected ,internal)
  - Accessibility Modifier (open, final)
  - Primary ve Secondary Constructor
- - Abstract (Soyut) Kavramı (Neyi Open neyi abstract yapacağım tekrar dinle oaryı ve düzenle buraları)
+ - Abstract (Soyut) Kavramı
  - Abstract Class
  - Interface
     - Interface yapıları state tutabilir mi?
