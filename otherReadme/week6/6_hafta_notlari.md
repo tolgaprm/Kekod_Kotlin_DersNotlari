@@ -304,5 +304,20 @@ tanımlaması yapıldığında bu değişkenin alt sınıfta `backing field`'ı 
 >
 >![](/screenshots/week6/abstract_to_abstract.png)
 
+```kt
+abstract class Human() {
 
+    abstract val name: String
+    abstract val surname: String
+}
 
+open class Turkish() : Human() {
+    override val name: String = "Tolga"
+    final override val surname: String = "Pirim"
+}
+```
+- Human sınıfınfan gelen override edilmesi zorunlu olan `surname` değişkeninin ilk child class'da override edilmesini ama
+daha sonraki child sınıflar içerisinde override edilmesini istemiyorsak ilk child sınıf içerisinde override ettikten sonra
+o değişkene final keywordünü eklersek child class'da override edilmesini engellemiş oluruz.
+
+- ### Interface (Arayüz) Nedir?

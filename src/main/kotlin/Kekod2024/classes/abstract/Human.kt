@@ -1,7 +1,8 @@
 package Kekod2024.classes.abstract
 
-abstract class Human(val name: String, val eventManager: EventManager) {
+abstract class Human() {
 
+    abstract val name: String
     val eyeColor: String = "blue"
     open val age = 23
     abstract val surname: String
@@ -10,7 +11,7 @@ abstract class Human(val name: String, val eventManager: EventManager) {
     abstract fun display()
 }
 
-abstract class Turk(eventManager: EventManager, override val middleName: String) : Human("Türk", eventManager) {
+abstract class Turk(eventManager: EventManager, override val middleName: String) : Human() {
     override val surname: String = "Pirim"
     abstract val skinColor: String
 
@@ -19,7 +20,7 @@ abstract class Turk(eventManager: EventManager, override val middleName: String)
 }
 
 
-open class Kurt(eventManager: EventManager, override val middleName: String) : Human("Kürt", eventManager) {
+open class Kurt(eventManager: EventManager, override val middleName: String, override val name: String) : Human() {
     override val surname: String = "sdasd"
 
     override fun display() {
@@ -28,8 +29,21 @@ open class Kurt(eventManager: EventManager, override val middleName: String) : H
 
 class ChildTurk(override val surname: String) : Turk(eventManager = EventManager(), middleName = "middleName") {
     override val skinColor: String = ""
+    override val name: String
+        get() = TODO("Not yet implemented")
+
     override fun display() {
 
+    }
+}
+
+open class Turkish() : Human() {
+    override val name: String = "Tolga"
+    override val surname: String = "Pirim"
+    final override val middleName: String = ""
+
+    override fun display() {
+        TODO("Not yet implemented")
     }
 }
 
