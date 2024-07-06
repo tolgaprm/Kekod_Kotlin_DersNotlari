@@ -297,10 +297,11 @@ tanımlaması yapıldığında bu değişkenin alt sınıfta `backing field`'ı 
   zorunluluğu
   kalkar.
 
->![](/screenshots/week6/abstract_to_class.png)
+> ![](/screenshots/week6/abstract_to_class.png)
 >
->Bu şekilde `Rectangle` sınıfına abstract anahtar kelimesini koymadığımızda hata veriyor ama abstract olarak belirttiğimizde
->herhangi bir hata almıyoruz.
+>Bu şekilde `Rectangle` sınıfına abstract anahtar kelimesini koymadığımızda hata veriyor ama abstract olarak
+> belirttiğimizde
+> herhangi bir hata almıyoruz.
 >
 >![](/screenshots/week6/abstract_to_abstract.png)
 
@@ -316,8 +317,70 @@ open class Turkish() : Human() {
     final override val surname: String = "Pirim"
 }
 ```
-- Human sınıfınfan gelen override edilmesi zorunlu olan `surname` değişkeninin ilk child class'da override edilmesini ama
-daha sonraki child sınıflar içerisinde override edilmesini istemiyorsak ilk child sınıf içerisinde override ettikten sonra
-o değişkene final keywordünü eklersek child class'da override edilmesini engellemiş oluruz.
+
+- Human sınıfınfan gelen override edilmesi zorunlu olan `surname` değişkeninin ilk child class'da override edilmesini
+  ama
+  daha sonraki child sınıflar içerisinde override edilmesini istemiyorsak ilk child sınıf içerisinde override ettikten
+  sonra
+  o değişkene final keywordünü eklersek child class'da override edilmesini engellemiş oluruz.
 
 - ### Interface (Arayüz) Nedir?
+
+Interface yapılarınıda aslında yine soyutlama için kullanabiliriz. Interface yapılarını bir beceri seti olarak
+düşünebiliriz.Elimizde bir veri tabanı olsun bu veri tabanınına veri ekleme, veri silme, veri güncelleme gibi becerileri
+vardır. Aynı şekilde
+bir köpeğin, kedinin ise yürüme, koşma, zıplama gibi becerileri vardır.
+
+Interface ile abstract yapıların arasındaki en önemli fark, abstract sınıflarda soyutlama yaparken `is a` ilişkisi
+kurulmaya dikkat edilir.
+(Dog is Animal, Square is Shape vs.) Interface'lerde ise `can do` ilişkisi vardır. (Dog can run) yani köpek koşabilir
+gibi herhangi bir beceriyi gerçekleştirme
+ilişkisi vardır.
+
+Şimdi gelelim interface özelliklerine;
+
+- Interface içerisindeki body'siz yazılan fonksiyonlar interface implement edilecek yerde kesinikle override edilme
+  zorunluluğu vardır.
+  Ama body'li yazılan fonksiyonların override edilme zorunluluğu yoktur. Bunun sebebi Interface içerisindeki bodyli
+  fonksiyonlar
+  default olarak
+  `open`, body'siz fonksiyonlar ise `abstract` olarak belirtilir.
+
+![](/screenshots/week6/interface_default.png)
+
+- Interface içerisinde state tutamayız.
+
+![](/screenshots/week6/interface_state.png)
+Gördüğümüz gibi herhangi bir değişken yazıp ona değer atamaya çalıştığımzda bu işlemi interface içerisinde
+izin verilmediğini, yapamadığımız söylüyor.
+
+```kt
+interface Vehicle {
+    fun drive()
+    fun stop()
+
+    val accelerate get() = 120
+}
+```
+
+Yalnız bununla karıştırılmamalı. Burada bir değişkene değer atama yapabiliyor gibi gözükebiliriz ama aslında değişkene
+değer atamıyoruz
+sadece o property'nin `get` fonksiyonunu yazmış oluyoruz arka planda.
+
+### Bir interface başka bir interface'i miras alabilir. Ama bir interface bir abstract sınıfı miras alamaz.
+
+```kt
+interface Transport {
+    fun drive()
+    fun stop()
+}
+
+// Motorlu taşıtlar için arayüz
+interface MotorizedTransport : Transport {
+    fun refuel(amount: Double)
+}
+```
+
+### Interface içerisindeki fonksiyonlara ve proprtylere `final` keywordünü ekleyemeyiz.
+![](/screenshots/week6/interface_final.png)
+Eklemeye çalıştığımızda interface içerisinde `final` keywordü kullanımalaz uyarısını veriyor.
