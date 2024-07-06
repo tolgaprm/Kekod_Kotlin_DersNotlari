@@ -25,6 +25,10 @@ interface Vehicle {
     fun stop()
 
     val accelerate get() = 120
+
+    companion object {
+        val name: String = "Mercedes"
+    }
 }
 
 // Interface'ler state tutamazlar ama abstarct sınıflar state tutabilirler
@@ -67,6 +71,7 @@ fun main() {
         override fun afterTextChanged() {}
     }
 }
+
 
 /**
  * bir class abstract ise bir interface'i

@@ -382,5 +382,35 @@ interface MotorizedTransport : Transport {
 ```
 
 ### Interface içerisindeki fonksiyonlara ve proprtylere `final` keywordünü ekleyemeyiz.
+
 ![](/screenshots/week6/interface_final.png)
 Eklemeye çalıştığımızda interface içerisinde `final` keywordü kullanımalaz uyarısını veriyor.
+
+## Not: Interface içerisinde `companion object` kullanımı yaptığımzda state tutabiliyoruz.
+
+> `companion object` kullanımı ile state tutabiliyoruz ama tabiki de bunu yapmamamızz gerekiyor. Burada sadece bunu
+> yapabildiğimizi bilmemiz gerekiyor ve bu işlemin arka planda nasıl çalıştığını anlamamız bize katkı sağlayacaktır.
+> Şimdi gelin nasıl yapılıyor hep birlikte ona bakalım
+> ```kt
+> interface Vehicle {
+>    fun drive()
+>    fun stop()
+>
+>    companion object {
+>        val name: String = "Mercedes"
+>    }
+> }
+>```
+> 
+> Örneği incelediğimizde `interface` içerisinde `companion object` kullanımı yapılmış ve `companion object` içerisinde
+> bir değişken tanımlanmış ve ona varsayılan bir değer ataması yapılmış. Şimdi bunun için oluşturulan Java koduna
+> bakalım ve
+> bu işlemin nasıl mümkün olduğunu anlamaya çalışalım.
+> 
+> ![](/screenshots/week6/interface_companion_object.png)
+> 
+> Dikkatle incelediğimizde `companion object` ile yazdığımız kısım `interface` içerisinde
+> nested bir class olarak ve `static` olarak oluşturulmuş.
+> 
+>  `companion object` kullanarak arayüz içinde state tutabiliyoruz çünkü `companion object` statik üyeleri temsil eder 
+> ve bu üyeler sınıfın ya da arayüzün örneği olmadan erişilebilir durumdadır. 
