@@ -155,10 +155,10 @@
 - Operator Overloading
 
 - if Koşulu
-  - State Olarak Kullanımı
-  - Expression Olarak Kullanımı
-  - Kotlin'de Neden Ternary(`condition ? then : else`) Operatörü Yoktur?
-  - `if` `else if` Kullanımı
+    - State Olarak Kullanımı
+    - Expression Olarak Kullanımı
+    - Kotlin'de Neden Ternary(`condition ? then : else`) Operatörü Yoktur?
+    - `if` `else if` Kullanımı
 
 - When Kullanımı
 
@@ -168,16 +168,15 @@
 
 - Destructuring declarations Nedir?
 
-
 ## 5. Hafta Notları
 
 ### İçindekiler
 
- - İnfix Fonksiyonlar
- - Extension Fonksiyonlar
- - Local Fonksiyonlar
- - HigherOrder Functions
- - Inline - Noinline - Crossinline
+- İnfix Fonksiyonlar
+- Extension Fonksiyonlar
+- Local Fonksiyonlar
+- HigherOrder Functions
+- Inline - Noinline - Crossinline
 
 ## 6. Hafta Notları
 
@@ -185,11 +184,27 @@
 
 ### İçindekiler
 
- - Object Oriented Programming Mantığı Nedir?
- - Visibility Modifier (public, private, protected ,internal)
- - Accessibility Modifier (open, final)
- - Primary ve Secondary Constructor
- - Abstract (Soyut) Kavramı
- - Abstract Class
- - Interface
+- Object Oriented Programming Mantığı Nedir?
+- Visibility Modifier (public, private, protected ,internal)
+- Accessibility Modifier (open, final)
+- Primary ve Secondary Constructor
+- Abstract (Soyut) Kavramı
+- Abstract Class
+- Interface
     - Interface yapıları state tutabilir mi?
+
+## 7. Hafta Notları
+
+> [7.Haftanın Notlarına Buradan Ulaşabilirsiniz](otherReadme/week7/7_hafta_notlari.md)
+
+### İçindekiler
+
+- Data Class
+  - Destructuring Declarations Kullanımı?
+- Enum Class
+    - Enum Classları Neden Kullanıyoruz?
+    - Enum Class'ın Özellikleri
+- Sealed Class
+    - Sealed Class'ın Özellikleri
+    - Sealed Class Yapısı
+- Enum Class & Sealed Class Farkları 
