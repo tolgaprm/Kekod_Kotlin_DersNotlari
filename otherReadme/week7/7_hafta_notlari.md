@@ -145,43 +145,55 @@ Yukarıdaki örnekte, for döngüsünde her bir çifti `key` ve `value` olmak ü
 ve `map.values` gibi yöntemler kullanarak aynı işlemi yapmaktan daha pratik ve okunabilir bir yaklaşımdır.
 
 ### Enum Classes
- Enum sınıflar, benzer öğeleri gruplandırmak ve tür güvenliği (Type Safety) sağlamak için kullanılan ve kodun daha okunabilir
+
+Enum sınıflar, benzer öğeleri gruplandırmak ve tür güvenliği (Type Safety) sağlamak için kullanılan ve kodun daha
+okunabilir
 ve tahmin edilebilir, anlaşılabilir yazılmasına katkı sağlayan bir sınıf türüdür.
 
 - ### Enum Class'ları Neden Kullanıyoruz?
-    Enum sınıflarının önemini anlatmak için bir senaryo üzerinden gidelim. Uygulamamızda birden fazla kullanıcı tipi olduğunu
-    düşünelim. Developer, Manager ve Tester. Eğer `Enum` sınıflarını kullanmazsak, bu kullanıcı tiplerini sayılarla temsil 
-    etmek zorunda kalabiliriz.
-- 
-    Örneğin;
-    `developer - 0`
-    `manager - 1`
-    `tester - 2` temsil eder.
-- 
-    ```kt
-     fun handleUser(userType: Int) {
-      when(userType){
-          0 -> "Developer için gerekli işlemi yap"
-          1 -> "Manager için gerekli işlemi yap"
-          2 -> "Tester için gerekli işlemi yap"
-      }
-  }
-   ```
-  Bu yaklaşım başlangıçta işlevsel görünse de ileride bazı önemli sorunlara yol açabilir.
-    
- - ## Bu Yaklaşımın Sorunları
+  Enum sınıflarının önemini anlatmak için bir senaryo üzerinden gidelim. Uygulamamızda birden fazla kullanıcı tipi
+  olduğunu
+  düşünelim. Developer, Manager ve Tester. Eğer `Enum` sınıflarını kullanmazsak, bu kullanıcı tiplerini sayılarla temsil
+  etmek zorunda kalabiliriz.
+-
+
+Örneğin;
+`developer - 0`
+`manager - 1`
+`tester - 2` temsil eder.
+
+-
+
+```kt
+ fun handleUser(userType: Int) {
+    when (userType) {
+        0 -> "Developer için gerekli işlemi yap"
+        1 -> "Manager için gerekli işlemi yap"
+        2 -> "Tester için gerekli işlemi yap"
+    }
+
+}
+
+ ```
+
+Bu yaklaşım başlangıçta işlevsel görünse de ileride bazı önemli sorunlara yol açabilir.
+
+- ## Bu Yaklaşımın Sorunları
 
     - 1-) **Okunabilirlik Eksikliği:** Koda baktığımızda, `0`, `1` ve `2` gibi sayılar doğrudan neyi temsil
-    ettiklerini söylemez. Bu da özellikle ekip genişledikçe ve kod büyüdükçe kafa karıştırıcı olabilir.
-   
-    - 2-) **Ölçeklenebilirlik Sorunları:** Daha fazla kullanıcı tipi eklemek istediğinizde sayılarla işlem yapmak karmaşık hale gelir.
-   Ve yeni bir kullanıcı tipi ekledik diyelim bunu `userType`'a göre işlem yaptığımız her yerde yeni bir kontrol ekleme işlemini yapmamız gerekiyor.
-   Ama bunu yaparken herhangi bir yerde bunu eklemeyi unutabiliriz ve uygulamamız başarılı bir şekilde build almaya devam eder ama bazı yerlerde istenilen şekilde davranışlar gerçekleştiremez.
-   Bu da istenilen bir durum değildir.
+      ettiklerini söylemez. Bu da özellikle ekip genişledikçe ve kod büyüdükçe kafa karıştırıcı olabilir.
+
+    - 2-) **Ölçeklenebilirlik Sorunları:** Daha fazla kullanıcı tipi eklemek istediğinizde sayılarla işlem yapmak
+      karmaşık hale gelir.
+      Ve yeni bir kullanıcı tipi ekledik diyelim bunu `userType`'a göre işlem yaptığımız her yerde yeni bir kontrol
+      ekleme işlemini yapmamız gerekiyor.
+      Ama bunu yaparken herhangi bir yerde bunu eklemeyi unutabiliriz ve uygulamamız başarılı bir şekilde build almaya
+      devam eder ama bazı yerlerde istenilen şekilde davranışlar gerçekleştiremez.
+      Bu da istenilen bir durum değildir.
 
 - ### Enum Sınıfı Çözümü:
 
-    Bu sorunları aşmanın en etkili yönü `Enum` sınıflarını kullanmaktır.
+  Bu sorunları aşmanın en etkili yönü `Enum` sınıflarını kullanmaktır.
 
     ```kt
     enum class UserType {
@@ -198,129 +210,186 @@ ve tahmin edilebilir, anlaşılabilir yazılmasına katkı sağlayan bir sınıf
         }
     }
   ```
+
     - ## Enum Sınıflarının Avantajları:
 
-    - 1-) **Daha İyi Okunabilirlik:** Keyfi sayılar yerine anlamlı isimler kullanılır. Kodu okuyan herkes hemen kullanıcı tiplerinin neyi temsil ettiğini anlayabilir.
-    - 2-) **Tür Güvenliği:** Enum sınıfları, yanlış değerlerin geçilmesini engeller. Yanlışlıkla bir Int değeri geçtiğinizde derleyici hata verecektir.
-    - 3-) **Kolay Ölçeklenebilirlik:** Enum sınıflarına ekstra bir yeni eleman eklemesi yaptığımızda `Enum sınıflarını` kullandığımız yerlerde
-    bize uyarı verecektir (*Aşağıdaki fotoğrafa bakabilirsiniz*) ve projeyi compile etmeyecek ve derleme aşamasında biz eksikliği fark edip hemen düzeltebileceğiz.
+    - 1-) **Daha İyi Okunabilirlik:** Keyfi sayılar yerine anlamlı isimler kullanılır. Kodu okuyan herkes hemen
+      kullanıcı tiplerinin neyi temsil ettiğini anlayabilir.
+    - 2-) **Tür Güvenliği:** Enum sınıfları, yanlış değerlerin geçilmesini engeller. Yanlışlıkla bir Int değeri
+      geçtiğinizde derleyici hata verecektir.
+    - 3-) **Kolay Ölçeklenebilirlik:** Enum sınıflarına ekstra bir yeni eleman eklemesi yaptığımızda `Enum sınıflarını`
+      kullandığımız yerlerde
+      bize uyarı verecektir (*Aşağıdaki fotoğrafa bakabilirsiniz*) ve projeyi compile etmeyecek ve derleme aşamasında
+      biz eksikliği fark edip hemen düzeltebileceğiz.
       ![](/screenshots/week7/enum_class_error.png)
 
 - ### Enum Sınıfların Özellikleri
-    Enum sınıflarının ne olduğunu ve neden kullanıldığını anladığımıza göre Enum sınıflarının özelliklerinden ve arka planda
-    nasıl bir çalışma mantığı olduğuna bir göz gezdirelim. Let's Goooooo :)
-    
-  - #### 1-) Enum Sınıflar herhangi bir sınıfı miras (inheritance) alamıyorlar.
+  Enum sınıflarının ne olduğunu ve neden kullanıldığını anladığımıza göre Enum sınıflarının özelliklerinden ve arka
+  planda
+  nasıl bir çalışma mantığı olduğuna bir göz gezdirelim. Let's Goooooo :)
+
+    - #### 1-) Enum Sınıflar herhangi bir sınıfı miras (inheritance) alamıyorlar.
+        ```kt
+        // Bu örnek derlenmez çünkü enum sınıfları başka bir sınıftan türetilemez.
+        open class BaseClass
+        enum class UserType : BaseClass() {
+            DEVELOPER,
+            MANAGER,
+            TESTER
+        }
+       ```
+    - #### 2-) Enum Sınıflar interface yapılarını implement edebilirler.
+        - Enum Sınıflar `interface` yapılarını `implement` edebilirler. Eğer implement edilen interface'in body'siz
+          fonksiyonları varsa bu durumda bu fonksiyonu ya `Enum Class` içerisinde ya da `Enum sabitlerinin` **her
+          birinin içerisinde
+          ayrı ayrı** `override` işlemini gerçekleştirmemiz gerekiyor.
       ```kt
-      // Bu örnek derlenmez çünkü enum sınıfları başka bir sınıftan türetilemez.
-      open class BaseClass
-      enum class UserType : BaseClass() {
-          DEVELOPER,
-          MANAGER,
-          TESTER
+      interface Role {
+          fun description(): String
       }
-     ```
-  - #### 2-) Enum Sınıflar interface yapılarını implement edebilirler.
-    - Enum Sınıflar `interface` yapılarını `implement` edebilirler. Eğer implement edilen interface'in body'siz
-      fonksiyonları varsa bu durumda bu fonksiyonu ya `Enum Class` içerisinde ya da `Enum sabitlerinin` **her birinin içerisinde
-      ayrı ayrı** `override` işlemini gerçekleştirmemiz gerekiyor.
-    ```kt
-    interface Role {
-        fun description(): String
-    }
-    
-    enum class UserType : Role {
-        DEVELOPER {
-            override fun description() = "Writes code"
-        },
-        MANAGER {
-            override fun description() = "Manages team"
-        },
-        TESTER {
-            override fun description() = "Tests the product"
-        }
-    }
-    
-    fun main() {
-        val userType = UserType.DEVELOPER
-        println(userType.description()) // Çıktı: Writes code
-    }     
-    ```
-    - #### 3-) Enum Sınıflarının nesnesi oluşturulamaz.
-    - #### 4-) Enum sabitlerinin constructor'ları olabilir, ancak doğrudan property tanımlanamaz.
-      - Enum sabitlerine constructor ekleyebiliriz, ancak her sabit, enum sınıfının sahip olduğu constructor parametrelerine sahip olmak zorundadır.
-      ```kt
-        enum class UserType(val role: String) {
-            DEVELOPER("Writes code"),
-            MANAGER("Manages team"),
-            TESTER("Tests the product");
-        
-            fun printRole() {
-                println("Role: $role")
-            }
-        }
-        
-        fun main() {
-            UserType.DEVELOPER.printRole() // Çıktı: Role: Writes code
-        }    
-      ```
-    - #### 5-)Enum Sınıflarının `entries` ve `values()` Fonksiyonları
-      - `entries` ve `values()` fonksiyonları, bir enum sınıfının tüm sabitlerinin listesini verir.
-      - Kotlin 1.9'dan itibaren, `values()` fonksiyonu yerine `entries` kullanılmaktadır.
-      ```kt
-        enum class UserType {
-            DEVELOPER,
-            MANAGER,
-            TESTER
-        }
-        
-        fun main() {
-            // entries ile enum sabitlerinin listesini alalım
-            val allEntries = UserType.entries
-            println(allEntries) // Çıktı: [DEVELOPER, MANAGER, TESTER]
-        
-            // Eski yöntem: values()
-            val allValues = UserType.values()
-            println(allValues.joinToString()) // Çıktı: DEVELOPER, MANAGER, TESTER
-        }      
-      ```
-    - #### 6-) valuesOf() fonksiyonu 
-        - `valuesOf()` fonksiyonu ise, o enumdaki belli bir enum sabitini bize döndürür. Eğer verilen değer enum sabitlerinin içerisinde yoksa
-        `IllegalArgumentException` hatası alınır.
-      ```kt
-        enum class UserType {
-            DEVELOPER,
-            MANAGER,
-            TESTER
-        }
-        
-        fun main() {
-            // Geçerli bir enum sabiti
-            val developer = UserType.valueOf("DEVELOPER")
-            println(developer) // Çıktı: DEVELOPER
-        
-            // Geçersiz bir enum sabiti
-            try {
-                val invalidType = UserType.valueOf("ADMIN")
-            } catch (e: IllegalArgumentException) {
-                println("Hata: ${e.message}") // Çıktı: Hata: No enum constant UserType.ADMIN
-            }
-        }
       
+      enum class UserType : Role {
+          DEVELOPER {
+              override fun description() = "Writes code"
+          },
+          MANAGER {
+              override fun description() = "Manages team"
+          },
+          TESTER {
+              override fun description() = "Tests the product"
+          }
+      }
+      
+      fun main() {
+          val userType = UserType.DEVELOPER
+          println(userType.description()) // Çıktı: Writes code
+      }     
       ```
-    - #### 7-) Enum Sabitlerinin name ve ordinal Property'leri
-      - `name:` Enum sabitinin ismini verir.
-      - `ordinal:` Enum sabitinin sıralamasını (index) verir.
-      ```kt
-        enum class UserType {
-            DEVELOPER,
-            MANAGER,
-            TESTER
+        - #### 3-) Enum Sınıflarının nesnesi oluşturulamaz.
+        - #### 4-) Enum sabitlerinin constructor'ları olabilir, ancak doğrudan property tanımlanamaz.
+            - Enum sabitlerine constructor ekleyebiliriz, ancak her sabit, enum sınıfının sahip olduğu constructor
+              parametrelerine sahip olmak zorundadır.
+          ```kt
+            enum class UserType(val role: String) {
+                DEVELOPER("Writes code"),
+                MANAGER("Manages team"),
+                TESTER("Tests the product");
+            
+                fun printRole() {
+                    println("Role: $role")
+                }
+            }
+            
+            fun main() {
+                UserType.DEVELOPER.printRole() // Çıktı: Role: Writes code
+            }    
+          ```
+        - #### 5-)Enum Sınıflarının `entries` ve `values()` Fonksiyonları
+            - `entries` ve `values()` fonksiyonları, bir enum sınıfının tüm sabitlerinin listesini verir.
+            - Kotlin 1.9'dan itibaren, `values()` fonksiyonu yerine `entries` kullanılmaktadır.
+          ```kt
+            enum class UserType {
+                DEVELOPER,
+                MANAGER,
+                TESTER
+            }
+            
+            fun main() {
+                // entries ile enum sabitlerinin listesini alalım
+                val allEntries = UserType.entries
+                println(allEntries) // Çıktı: [DEVELOPER, MANAGER, TESTER]
+            
+                // Eski yöntem: values()
+                val allValues = UserType.values()
+                println(allValues.joinToString()) // Çıktı: DEVELOPER, MANAGER, TESTER
+            }      
+          ```
+        - #### 6-) valuesOf() fonksiyonu
+            - `valuesOf()` fonksiyonu ise, o enumdaki belli bir enum sabitini bize döndürür. Eğer verilen değer enum
+              sabitlerinin içerisinde yoksa
+              `IllegalArgumentException` hatası alınır.
+          ```kt
+            enum class UserType {
+                DEVELOPER,
+                MANAGER,
+                TESTER
+            }
+            
+            fun main() {
+                // Geçerli bir enum sabiti
+                val developer = UserType.valueOf("DEVELOPER")
+                println(developer) // Çıktı: DEVELOPER
+            
+                // Geçersiz bir enum sabiti
+                try {
+                    val invalidType = UserType.valueOf("ADMIN")
+                } catch (e: IllegalArgumentException) {
+                    println("Hata: ${e.message}") // Çıktı: Hata: No enum constant UserType.ADMIN
+                }
+            }
+          
+          ```
+        - #### 7-) Enum Sabitlerinin name ve ordinal Property'leri
+            - `name:` Enum sabitinin ismini verir.
+            - `ordinal:` Enum sabitinin sıralamasını (index) verir.
+          ```kt
+            enum class UserType {
+                DEVELOPER,
+                MANAGER,
+                TESTER
+            }
+            
+            fun main() {
+                val userType = UserType.MANAGER
+                println("Name: ${userType.name}")     // Çıktı: Name: MANAGER
+                println("Ordinal: ${userType.ordinal}") // Çıktı: Ordinal: 1
+            }      
+          ```
+
+### Sealed Class
+
+Sealed class'lar, belirli bir sınıf hiyerarşisini sınırlandırmak için kullanılır.
+Bu hiyerarşi, yalnızca sealed class'ı miras alan alt sınıflar tarafından oluşturulabilir ve bu alt sınıflar aynı package
+içinde tanımlanmalıdır.
+
+```kt
+sealed class Error(val errorCode: Int) {
+
+    class NoInternet(val errorMessage: String) : Error(100)
+
+    class ServerError : Error(200)
+
+    class FileIOError(errorCode: Int) : Error(errorCode), SomeInterface {
+        override fun someInterfaceMethod() {
+
         }
-        
-        fun main() {
-            val userType = UserType.MANAGER
-            println("Name: ${userType.name}")     // Çıktı: Name: MANAGER
-            println("Ordinal: ${userType.ordinal}") // Çıktı: Ordinal: 1
-        }      
-      ```
+    }
+}
+
+
+interface SomeInterface {
+    fun someInterfaceMethod()
+}
+```
+
+- ### Özellikleri
+    - **Kısıtlanmış Sınıf Hiyerarşisi:** Sealed class'lar, belirli bir hiyerarşi oluşturmak ve bu hiyerarşiyi
+      sınırlandırmak için kullanılır. Sealed class'lar, başka bir `sealed class`, `abstract class` veya `open class'tan`
+      miras alabilir.
+    - **Miras ve Interface Desteği:** Sealed class'lar, miras alındıkları sınıftan bağımsız olarak yeni property'ler
+      tanımlayabilir ve interface'leri implement edebilir. Ancak, alt sınıflar başka bir sınıfı miras alamazlar, çünkü
+      Kotlin'de çoklu kalıtım desteklenmez.
+    - **Derleyici Kontrolü:** Sealed class'lar, when ifadelerinde kullanıldıklarında tüm alt sınıfların ele alınmasını
+      zorunlu kılar, bu sayede else durumuna ihtiyaç duyulmaz.
+    - **Use Case:** Bir sınıfın farklı türlerde alt sınıfları olması gereken, ancak bu alt sınıfların sınırlı bir sayıda
+      olması istenen ve bu alt sınıfların farklı bilgiler tutmasını istediğimiz durumlarda sealed class'lar idealdir.
+    - Örneğin, bir API yanıtını temsil eden farklı veri durumları (Success, Error, Loading) ve bu durumlarda farklı verileri
+    tutmak istediğimizde kullanşlıdır yani Success durumunda veriyi, Error durumunda hata mesajını ve hatanın kodunu verebiliriz.
+
+```kt
+sealed class ApiResponse {
+    data class Success(val data: String) : ApiResponse()
+    data class Error(val errorCode: Int, val message: String) : ApiResponse()
+    data object Loading : ApiResponse()   
+}
+```
